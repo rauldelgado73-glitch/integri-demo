@@ -1,3 +1,4 @@
+# VERSION INTEGRI: ETICA_V2_SIN_NEUTRALIDAD - 22/07/2026
 import base64
 import html
 from pathlib import Path
@@ -49,10 +50,15 @@ def respuesta_guiada(texto: str) -> str:
             "INTEGRI puede explicarte el procedimiento general y orientarte hacia la Plataforma Digital Única de Denuncias. "
             "La UFII brinda orientación preventiva y gestiona la derivación conforme a sus competencias."
         )
-    if any(p in consulta for p in ("conflicto de interés", "conflicto de interes", "ética", "etica", "regalo", "favorecimiento", "conducta")):
+    if any(p in consulta for p in (
+        "conflicto de interés", "conflicto de interes", "ética", "etica", "regalo", "favorecimiento", "conducta",
+        "principio", "deber", "prohibición", "prohibicion", "proselitismo", "bien del estado",
+        "bienes del estado", "información privilegiada", "informacion privilegiada",
+    )):
         return (
-            "Un posible dilema ético o conflicto de intereses debe evaluarse preventivamente considerando las funciones, "
-            "intereses particulares y riesgos de afectación a la imparcialidad. INTEGRI orienta, pero no determina responsabilidades ni sanciona."
+            "Si tienes una duda ética, describe únicamente el tipo de situación, sin mencionar personas ni datos sensibles. "
+            "La Ley N.° 27815 establece principios, deberes y prohibiciones para la función pública. Puedes revisar la guía práctica "
+            "desde el botón «Consultas de Ética». INTEGRI brinda orientación preventiva, pero no califica infracciones ni determina sanciones."
         )
     if any(p in consulta for p in ("declaración jurada", "declaracion jurada", "declaraciones juradas", "dji")):
         return (
@@ -301,7 +307,7 @@ html, body, [class*="css"] {
     text-decoration: none;
 }
 
-.neutralidad {
+.hero-feature-card {
     position: relative;
     margin-left: 0;
     width: 100%;
@@ -333,8 +339,8 @@ html, body, [class*="css"] {
     white-space: nowrap;
 }
 .shield { font-size: 3.7rem; filter: drop-shadow(0 3px 2px rgba(0,0,0,.22)); }
-.neutralidad strong { display:block; font: 800 clamp(1.35rem,3vw,2.15rem)/1 Roboto,Arial,sans-serif; text-shadow:0 2px 2px rgba(0,0,0,.28); }
-.neutralidad small { display:block; margin-top:.3rem; font: 500 clamp(.9rem,2vw,1.35rem)/1 Roboto,Arial,sans-serif; }
+.hero-feature-card strong { display:block; font: 800 clamp(1.35rem,3vw,2.15rem)/1 Roboto,Arial,sans-serif; text-shadow:0 2px 2px rgba(0,0,0,.28); }
+.hero-feature-card small { display:block; margin-top:.3rem; font: 500 clamp(.9rem,2vw,1.35rem)/1 Roboto,Arial,sans-serif; }
 .arrow { font-size: 3.1rem; font-family: Arial,sans-serif; }
 
 .notice {
@@ -587,6 +593,44 @@ html, body, [class*="css"] {
 .source-button { display:inline-block; margin-top:1rem; padding:.8rem 1.25rem; color:#0754a4 !important; background:#fff; border:1px solid #7faee0; border-radius:9px; text-decoration:none !important; font:700 1rem Roboto,Arial,sans-serif; }
 .source-button:hover { background:#edf6ff; }
 
+.ethics-page { padding:1.65rem; text-align:left; }
+.ethics-intro {
+    display:grid;
+    grid-template-columns:86px 1fr;
+    gap:1.1rem;
+    align-items:center;
+    padding:1.35rem;
+    color:#fff;
+    background:linear-gradient(135deg,#073b82,#0869b6);
+    border-radius:14px;
+}
+.ethics-intro .ethics-icon { display:grid; place-items:center; width:76px; height:76px; font-size:3.2rem; background:#fff; border-radius:50%; }
+.ethics-intro h2 { margin:0 0 .35rem; font:800 clamp(1.7rem,4vw,2.6rem)/1.05 Roboto,Arial,sans-serif; }
+.ethics-intro p { max-width:900px; margin:0; font:500 1rem/1.45 Roboto,Arial,sans-serif; }
+.ethics-section { margin-top:1.4rem; }
+.ethics-section h3 { margin:0 0 .4rem; color:#092b66; font:800 1.35rem/1.2 Roboto,Arial,sans-serif; }
+.ethics-lead { margin:0 0 1rem; color:#4d6586; font:500 .92rem/1.4 Roboto,Arial,sans-serif; }
+.situation-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.75rem; }
+.situation-card { min-height:150px; padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; box-shadow:0 4px 10px rgba(18,61,121,.08); }
+.situation-icon { display:block; margin-bottom:.55rem; font-size:2rem; line-height:1; }
+.situation-card strong { display:block; margin-bottom:.35rem; color:#092b66; font:800 .98rem/1.2 Roboto,Arial,sans-serif; }
+.situation-card p { margin:0; color:#405a7d; font:500 .82rem/1.4 Roboto,Arial,sans-serif; }
+.ethics-columns { display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:.8rem; }
+.ethics-column { padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; }
+.ethics-column.principles { border-top:5px solid #0870c0; }
+.ethics-column.duties { border-top:5px solid #158a56; }
+.ethics-column.bans { border-top:5px solid #d4553d; }
+.ethics-column h4 { margin:0 0 .7rem; color:#092b66; font:800 1.05rem Roboto,Arial,sans-serif; }
+.ethics-tags { display:flex; flex-wrap:wrap; gap:.42rem; }
+.ethics-tag { padding:.38rem .58rem; color:#183b6d; background:#edf5ff; border:1px solid #c9dcf3; border-radius:999px; font:700 .76rem/1.2 Roboto,Arial,sans-serif; }
+.duties .ethics-tag { color:#17613f; background:#eaf8f1; border-color:#bde3ce; }
+.bans .ethics-tag { color:#8d3022; background:#fff0ed; border-color:#efc8c0; }
+.decision-route { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; counter-reset:ethics-step; }
+.route-step { position:relative; min-height:132px; padding:2.65rem .9rem .9rem; color:#15355f; background:#eaf4ff; border:1px solid #bcd6f1; border-radius:12px; font:600 .84rem/1.4 Roboto,Arial,sans-serif; }
+.route-step:before { counter-increment:ethics-step; content:counter(ethics-step); position:absolute; top:.75rem; left:.85rem; display:grid; place-items:center; width:28px; height:28px; color:#fff; background:#0870c0; border-radius:50%; font:800 .82rem Roboto,Arial,sans-serif; }
+.ethics-alert { padding:1.05rem 1.15rem; background:#fff8e7; border:1px solid #efcf7d; border-left:6px solid #e3a717; border-radius:12px; color:#694e18; font:500 .9rem/1.45 Roboto,Arial,sans-serif; }
+.ethics-alert strong { color:#774e00; }
+
 .chat-app {
     min-height:620px;
     display:flex;
@@ -719,7 +763,7 @@ div.stButton > button {
     .speech { margin-left:16%; font-size:1.35rem; }
     .quick-chat { margin-left:16%; width:84%; grid-template-columns:1fr; }
     .chat-hint { margin-left:16%; }
-    .neutralidad { width:72%; margin:0 0 0 auto; grid-template-columns:50px 1fr 20px; padding:.8rem; border-width:6px; }
+    .hero-feature-card { width:72%; margin:0 0 0 auto; grid-template-columns:50px 1fr 20px; padding:.8rem; border-width:6px; }
     .shield { font-size:2.8rem; }
     .badge { right:8%; font-size:.72rem; padding:.38rem .65rem; }
     .menu-grid { grid-template-columns:repeat(2,1fr); }
@@ -740,6 +784,11 @@ div.stButton > button {
     .model-page { padding:1rem; }
     .model-intro { grid-template-columns:1fr; text-align:center; }
     .model-intro .model-big-shield { margin:auto; }
+    .ethics-page { padding:1rem; }
+    .ethics-intro { grid-template-columns:1fr; text-align:center; }
+    .ethics-intro .ethics-icon { margin:auto; }
+    .situation-grid, .decision-route { grid-template-columns:1fr 1fr; }
+    .ethics-columns { grid-template-columns:1fr; }
 }
 
 @media (max-width: 420px) {
@@ -748,6 +797,7 @@ div.stButton > button {
     .menu-card strong { font-size:.92rem; }
     .metric { min-height:155px; }
     .footer-nav { padding:.6rem 0 0; gap:.5rem; }
+    .situation-grid, .decision-route { grid-template-columns:1fr; }
 }
 </style>
 """,
@@ -779,7 +829,7 @@ pagina = f"""
             </form>
             <div class="chat-hint">No ingreses nombres, DNI, datos personales ni detalles sensibles de una denuncia.</div>
             <a class="hero-link" href="?modulo=modelo" target="_self">
-                <div class="neutralidad">
+                <div class="hero-feature-card">
                     <div class="shield">🛡️</div>
                     <div><strong>Modelo de Integridad</strong><small>Orientación preventiva</small></div>
                     <div class="arrow">›</div>
@@ -906,6 +956,86 @@ if modulo_actual == "modelo":
             <div class="model-actions">
                 <a class="back-button" href="?" target="_self">← Volver al inicio</a>
                 <a class="source-button" href="https://www.gob.pe/integridad" target="_blank" rel="noopener noreferrer">Consultar fuente oficial PCM ↗</a>
+            </div>
+        </section>
+    </main>
+    """
+elif modulo_actual == "etica":
+    pagina = """
+    <main class="integri-shell">
+        <header class="brand">
+            <h1>INTEGRI</h1>
+            <div class="brand-line"></div>
+            <h2>Asistente de Integridad Institucional</h2>
+            <p>Unidad Funcional de Integridad Institucional (UFII)</p>
+        </header>
+        <nav class="topic-bar" aria-label="Áreas de orientación">
+            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+        </nav>
+
+        <section class="ethics-page panel">
+            <div class="ethics-intro">
+                <div class="ethics-icon">⚖️</div>
+                <div>
+                    <h2>Consultas de Ética</h2>
+                    <p>Orientación preventiva para reconocer dilemas éticos y tomar decisiones compatibles con los principios, deberes y prohibiciones de la función pública.</p>
+                </div>
+            </div>
+
+            <div class="ethics-section">
+                <h3>¿Sobre qué situaciones puedes consultar?</h3>
+                <p class="ethics-lead">Describe únicamente el tipo de situación. No incluyas nombres, DNI, documentos, evidencias ni datos sensibles.</p>
+                <div class="situation-grid">
+                    <article class="situation-card"><span class="situation-icon">🔄</span><strong>Conflicto de intereses</strong><p>Cuando un interés personal, familiar, laboral o económico podría afectar tu imparcialidad.</p></article>
+                    <article class="situation-card"><span class="situation-icon">🎁</span><strong>Regalos, favores o ventajas</strong><p>Cuando te ofrecen o solicitan un beneficio relacionado con tus funciones o decisiones.</p></article>
+                    <article class="situation-card"><span class="situation-icon">🏛️</span><strong>Recursos e información pública</strong><p>Dudas sobre el uso de bienes del Estado, información reservada o privilegios del cargo.</p></article>
+                    <article class="situation-card"><span class="situation-icon">🛑</span><strong>Presiones, amenazas o acoso</strong><p>Situaciones que afectan la dignidad de una persona o buscan forzar una actuación indebida.</p></article>
+                </div>
+            </div>
+
+            <div class="ethics-section">
+                <h3>Lo que establece el Código de Ética</h3>
+                <p class="ethics-lead">La Ley N.° 27815 organiza las pautas de conducta en principios, deberes y prohibiciones éticas.</p>
+                <div class="ethics-columns">
+                    <article class="ethics-column principles">
+                        <h4>Principios que orientan</h4>
+                        <div class="ethics-tags">
+                            <span class="ethics-tag">Respeto</span><span class="ethics-tag">Probidad</span><span class="ethics-tag">Eficiencia</span><span class="ethics-tag">Idoneidad</span><span class="ethics-tag">Veracidad</span><span class="ethics-tag">Lealtad y obediencia</span><span class="ethics-tag">Justicia y equidad</span><span class="ethics-tag">Lealtad al Estado de derecho</span>
+                        </div>
+                    </article>
+                    <article class="ethics-column duties">
+                        <h4>Deberes de consulta frecuente</h4>
+                        <div class="ethics-tags">
+                            <span class="ethics-tag">Transparencia</span><span class="ethics-tag">Discreción</span><span class="ethics-tag">Ejercicio adecuado del cargo</span><span class="ethics-tag">Uso adecuado de bienes del Estado</span><span class="ethics-tag">Responsabilidad</span>
+                        </div>
+                    </article>
+                    <article class="ethics-column bans">
+                        <h4>Prohibiciones que limitan</h4>
+                        <div class="ethics-tags">
+                            <span class="ethics-tag">Intereses en conflicto</span><span class="ethics-tag">Ventajas indebidas</span><span class="ethics-tag">Proselitismo político</span><span class="ethics-tag">Mal uso de información privilegiada</span><span class="ethics-tag">Presionar, amenazar o acosar</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="ethics-section">
+                <h3>Ruta preventiva: ¿qué hago ante una duda?</h3>
+                <div class="decision-route">
+                    <div class="route-step">Identifica qué decisión, función o recurso público está involucrado.</div>
+                    <div class="route-step">Reconoce si existe un interés particular, beneficio, presión o riesgo para la imparcialidad.</div>
+                    <div class="route-step">Evita actuar apresuradamente y solicita orientación antes de tomar una decisión.</div>
+                    <div class="route-step">Consulta a la UFII sin compartir información sensible en este chatbot.</div>
+                </div>
+            </div>
+
+            <div class="ethics-section ethics-alert">
+                <strong>Importante:</strong> INTEGRI brinda orientación preventiva y general. No califica infracciones, no determina responsabilidades y no impone sanciones. Si deseas comunicar un posible acto de corrupción, utiliza el canal institucional correspondiente y evita describir aquí a las personas o las evidencias.
+            </div>
+
+            <div class="model-actions">
+                <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+                <a class="source-button" href="https://www.gob.pe/institucion/jne/normas-legales/8133444-ley-del-codigo-de-etica-de-la-funcion-publica-ley-n-27815" target="_blank" rel="noopener noreferrer">Consultar Ley N.° 27815 ↗</a>
+                <a class="source-button" href="https://www.gob.pe/institucion/saludpol/noticias/606119-guia-de-principios-deberes-y-prohibiciones-eticas-de-la-funcion-publica" target="_blank" rel="noopener noreferrer">Ver guía oficial ↗</a>
             </div>
         </section>
     </main>

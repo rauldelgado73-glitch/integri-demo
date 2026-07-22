@@ -66,8 +66,9 @@ def respuesta_guiada(texto: str) -> str:
         )
     if any(p in consulta for p in ("modelo de integridad", "componentes", "integridad institucional", "cultura de integridad")):
         return (
-            "El Modelo de Integridad organiza acciones preventivas para fortalecer la ética pública y reducir riesgos de corrupción. "
-            "INTEGRI podrá guiarte por sus componentes, evidencias, acciones de difusión y responsabilidades institucionales."
+            "El Modelo de Integridad fortalece la capacidad preventiva y defensiva de las entidades públicas frente a la corrupción "
+            "y las prácticas contrarias a la ética. Está organizado en 9 componentes. Puedes conocerlos desde el botón "
+            "«Modelo de Integridad vigente», ubicado debajo de mi imagen."
         )
     if any(p in consulta for p in ("checklist", "guía", "guia", "formato", "material")):
         return (
@@ -531,6 +532,61 @@ html, body, [class*="css"] {
 .back-button { display:inline-block; margin-top:1rem; padding:.8rem 1.25rem; color:white; background:#0754a4; border-radius:9px; text-decoration:none; font:700 1rem Roboto,Arial,sans-serif; box-shadow:0 5px 10px rgba(7,64,134,.18); }
 .back-button:hover { background:#063d83; }
 
+.model-access {
+    display:grid;
+    grid-template-columns:46px 1fr 22px;
+    align-items:center;
+    gap:.7rem;
+    width:100%;
+    margin:.85rem 0 .1rem;
+    padding:.8rem .9rem;
+    color:#fff !important;
+    text-decoration:none !important;
+    background:linear-gradient(135deg,#0878ca,#084b9e);
+    border:1px solid #063c83;
+    border-radius:13px;
+    box-shadow:0 6px 12px rgba(8,67,139,.20);
+    transition:transform .16s ease, box-shadow .16s ease;
+}
+.model-access:hover { transform:translateY(-2px); box-shadow:0 9px 16px rgba(8,67,139,.26); }
+.model-access .model-shield { font-size:2.1rem; line-height:1; }
+.model-access strong { display:block; color:#fff !important; font:800 .98rem/1.15 Roboto,Arial,sans-serif; }
+.model-access small { display:block; margin-top:.18rem; color:#dbeeff !important; font:600 .72rem/1.2 Roboto,Arial,sans-serif; }
+.model-access .model-arrow { color:#fff; font:800 1.75rem/1 Roboto,Arial,sans-serif; }
+
+.model-page { padding:1.65rem; text-align:left; }
+.model-intro {
+    display:grid;
+    grid-template-columns:86px 1fr;
+    gap:1.1rem;
+    align-items:center;
+    padding:1.35rem;
+    color:#fff;
+    background:linear-gradient(135deg,#073b82,#0873c7);
+    border-radius:14px;
+}
+.model-intro .model-big-shield { display:grid; place-items:center; width:76px; height:76px; font-size:3.3rem; background:#fff; border-radius:50%; }
+.model-intro h2 { margin:0 0 .35rem; font:800 clamp(1.7rem,4vw,2.6rem)/1.05 Roboto,Arial,sans-serif; }
+.model-intro p { max-width:880px; margin:0; font:500 1rem/1.45 Roboto,Arial,sans-serif; }
+.model-section { margin-top:1.4rem; }
+.model-section h3 { margin:0 0 .8rem; color:#092b66; font:800 1.35rem/1.2 Roboto,Arial,sans-serif; }
+.model-section-lead { margin:-.35rem 0 1rem; color:#4d6586; font:500 .92rem/1.4 Roboto,Arial,sans-serif; }
+.component-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; }
+.component-card { min-height:155px; padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; box-shadow:0 4px 10px rgba(18,61,121,.08); }
+.component-number { display:inline-grid; place-items:center; width:29px; height:29px; margin-bottom:.55rem; color:#fff; background:#0870c0; border-radius:50%; font:800 .85rem Roboto,Arial,sans-serif; }
+.component-card strong { display:block; margin-bottom:.35rem; color:#092b66; font:800 .96rem/1.2 Roboto,Arial,sans-serif; }
+.component-card p { margin:0; color:#405a7d; font:500 .82rem/1.4 Roboto,Arial,sans-serif; }
+.stage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; }
+.stage { padding:1rem; text-align:center; background:#eaf4ff; border:1px solid #bcd6f1; border-radius:12px; }
+.stage span { display:block; margin-bottom:.3rem; color:#0870c0; font:800 .75rem Roboto,Arial,sans-serif; text-transform:uppercase; letter-spacing:.04em; }
+.stage strong { color:#092b66; font:800 1rem Roboto,Arial,sans-serif; }
+.diris-box { padding:1.1rem 1.2rem; background:#fff8e7; border:1px solid #efcf7d; border-left:6px solid #e3a717; border-radius:12px; }
+.diris-box strong { display:block; margin-bottom:.35rem; color:#774e00; font:800 1.05rem Roboto,Arial,sans-serif; }
+.diris-box p { margin:0; color:#694e18; font:500 .9rem/1.45 Roboto,Arial,sans-serif; }
+.model-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; margin-top:1.35rem; }
+.source-button { display:inline-block; margin-top:1rem; padding:.8rem 1.25rem; color:#0754a4 !important; background:#fff; border:1px solid #7faee0; border-radius:9px; text-decoration:none !important; font:700 1rem Roboto,Arial,sans-serif; }
+.source-button:hover { background:#edf6ff; }
+
 .chat-app {
     min-height:620px;
     display:flex;
@@ -679,6 +735,11 @@ div.stButton > button {
     .chat-composer button { padding:.8rem .9rem; }
     .chat-home-link { font-size:0; }
     .chat-home-link:after { content:"← Inicio"; font-size:.8rem; }
+    .component-grid { grid-template-columns:1fr; }
+    .stage-grid { grid-template-columns:1fr; }
+    .model-page { padding:1rem; }
+    .model-intro { grid-template-columns:1fr; text-align:center; }
+    .model-intro .model-big-shield { margin:auto; }
 }
 
 @media (max-width: 420px) {
@@ -785,7 +846,71 @@ modulos = {
 
 modulo_actual = st.query_params.get("modulo", "")
 
-if modulo_actual in modulos:
+if modulo_actual == "modelo":
+    pagina = """
+    <main class="integri-shell">
+        <header class="brand">
+            <h1>INTEGRI</h1>
+            <div class="brand-line"></div>
+            <h2>Asistente de Integridad Institucional</h2>
+            <p>Unidad Funcional de Integridad Institucional (UFII)</p>
+        </header>
+        <nav class="topic-bar" aria-label="Áreas de orientación">
+            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+        </nav>
+
+        <section class="model-page panel">
+            <div class="model-intro">
+                <div class="model-big-shield">🛡️</div>
+                <div>
+                    <h2>Modelo de Integridad vigente</h2>
+                    <p>Conjunto de orientaciones para fortalecer la capacidad preventiva y defensiva de las entidades públicas frente a la corrupción y las prácticas contrarias a la ética.</p>
+                </div>
+            </div>
+
+            <div class="model-section">
+                <h3>Los 9 componentes oficiales</h3>
+                <p class="model-section-lead">Seleccionamos la idea principal de cada componente para explicarla de manera clara y práctica.</p>
+                <div class="component-grid">
+                    <article class="component-card"><span class="component-number">1</span><strong>Compromiso de la Alta Dirección</strong><p>Asegura liderazgo y condiciones institucionales para fortalecer una cultura de integridad.</p></article>
+                    <article class="component-card"><span class="component-number">2</span><strong>Gestión de riesgos</strong><p>Identifica y mitiga procesos vulnerables a delitos y prácticas contrarias a la ética.</p></article>
+                    <article class="component-card"><span class="component-number">3</span><strong>Políticas de integridad pública</strong><p>Establece estándares de cumplimiento y responsabilidades para la entidad y sus servidores.</p></article>
+                    <article class="component-card"><span class="component-number">4</span><strong>Transparencia, datos abiertos y rendición de cuentas</strong><p>Promueve el acceso a la información, la transparencia y la rendición de cuentas.</p></article>
+                    <article class="component-card"><span class="component-number">5</span><strong>Controles internos, externos y auditorías</strong><p>Fortalece los mecanismos de control y la atención diligente de las acciones de auditoría.</p></article>
+                    <article class="component-card"><span class="component-number">6</span><strong>Comunicación y capacitación</strong><p>Desarrolla inducción, difusión y capacitación continua para un desempeño ético.</p></article>
+                    <article class="component-card"><span class="component-number">7</span><strong>Canal de denuncias</strong><p>Asegura la gestión de denuncias de corrupción y las medidas de protección correspondientes.</p></article>
+                    <article class="component-card"><span class="component-number">8</span><strong>Supervisión y monitoreo</strong><p>Evalúa el avance del modelo y genera información para tomar decisiones de mejora.</p></article>
+                    <article class="component-card"><span class="component-number">9</span><strong>Encargado del Modelo de Integridad</strong><p>Articula los componentes y orienta a las áreas para su implementación oportuna.</p></article>
+                </div>
+            </div>
+
+            <div class="model-section">
+                <h3>Etapas de implementación</h3>
+                <div class="stage-grid">
+                    <div class="stage"><span>Etapa 1</span><strong>Inicial</strong></div>
+                    <div class="stage"><span>Etapa 2</span><strong>Institucionalización</strong></div>
+                    <div class="stage"><span>Etapa 3</span><strong>Estandarización</strong></div>
+                </div>
+            </div>
+
+            <div class="model-section diris-box">
+                <strong>Aplicación en DIRIS Lima Norte</strong>
+                <p>Próximamente incorporaremos aquí los avances, responsables, actividades y evidencias institucionales. Esta información será publicada únicamente después de ser validada por la UFII.</p>
+            </div>
+
+            <div class="model-section diris-box">
+                <strong>¿Qué significa para ti?</strong>
+                <p>El modelo ayuda a prevenir riesgos, actuar con imparcialidad, reconocer posibles conflictos de intereses, utilizar correctamente los canales institucionales y proteger la confianza en el servicio público.</p>
+            </div>
+
+            <div class="model-actions">
+                <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+                <a class="source-button" href="https://www.gob.pe/integridad" target="_blank" rel="noopener noreferrer">Consultar fuente oficial PCM ↗</a>
+            </div>
+        </section>
+    </main>
+    """
+elif modulo_actual in modulos:
     simbolo, titulo, descripcion = modulos[modulo_actual]
     pagina = f"""
     <main class="integri-shell">
@@ -825,6 +950,15 @@ with columna_robot:
         st.image(Path(__file__).parent / "assets" / "integri_robot.png", use_container_width=True)
         st.markdown("<div style='text-align:center;color:#0a2459;font-weight:800;'>INTEGRI</div>", unsafe_allow_html=True)
         st.caption("Asistente virtual de orientación preventiva")
+        st.html(
+            """
+            <a class="model-access" href="?modulo=modelo" target="_self">
+                <span class="model-shield">🛡️</span>
+                <span><strong>Modelo de Integridad vigente</strong><small>Conoce los 9 componentes</small></span>
+                <span class="model-arrow">›</span>
+            </a>
+            """
+        )
 
 with columna_chat:
     saludo_inicial = """

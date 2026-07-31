@@ -556,6 +556,17 @@ html, body, [class*="css"] {
 
 .metrics-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; }
 .demo-caption { margin:-.5rem 0 .9rem; color:#5b7090; text-align:center; font:600 .78rem/1.3 Roboto,Arial,sans-serif; }
+.demo-disclaimer {
+    margin:1rem 0 0;
+    padding:.78rem 1rem;
+    color:#65501d;
+    background:#fff8e7;
+    border:1px solid #efd58d;
+    border-left:5px solid #e3a717;
+    border-radius:9px;
+    text-align:center;
+    font:600 .8rem/1.4 Roboto,Arial,sans-serif;
+}
 .metric {
     min-height:168px;
     padding:1rem .75rem;
@@ -976,26 +987,27 @@ pagina = f"""
     </section>
 
     <section class="section panel">
-        <h2 class="section-title">Métricas demostrativas</h2>
-        <p class="demo-caption">Valores ilustrativos del prototipo. No corresponden todavía a reportes oficiales de la UFII.</p>
+        <h2 class="section-title">Panel de funcionamiento</h2>
+        <p class="demo-caption">Ejemplo de cómo INTEGRI podría presentar el seguimiento mensual de las orientaciones.</p>
         <div class="metrics-grid">
             <div class="metric">
-                <span class="metric-icon">🕘</span><div class="metric-title">Tiempo de Respuesta</div><div class="metric-rule"></div>
-                <div class="metric-text">Antes: 8 h &nbsp;|&nbsp; Ahora: 1 min</div>
+                <span class="metric-icon">💬</span><div class="metric-title">Consultas recibidas</div><div class="metric-rule"></div>
+                <div class="metric-value">42 <small>durante el mes</small></div>
             </div>
             <div class="metric">
-                <span class="metric-icon">💬</span><div class="metric-title">Consultas Atendidas</div><div class="metric-rule"></div>
-                <div class="metric-value">285 <small>esta semana</small></div>
+                <span class="metric-icon">✅</span><div class="metric-title">Orientaciones brindadas</div><div class="metric-rule"></div>
+                <div class="metric-value">36 <small>respuestas registradas</small></div>
             </div>
             <div class="metric warn">
                 <span class="metric-icon">⚠️</span><div class="metric-title">Alertas preventivas identificadas</div><div class="metric-rule"></div>
-                <div class="metric-value">15 <small>orientaciones preventivas</small></div>
+                <div class="metric-value">7 <small>situaciones orientadas</small></div>
             </div>
             <div class="metric folder">
                 <span class="metric-icon">🗂️</span><div class="metric-title">Derivaciones a UFII</div><div class="metric-rule"></div>
-                <div class="metric-value">8 <small>casos derivados</small></div>
+                <div class="metric-value">6 <small>solicitudes derivadas</small></div>
             </div>
         </div>
+        <p class="demo-disclaimer"><strong>Datos simulados para la maqueta:</strong> estas cifras son ficticias y se muestran únicamente para visualizar cómo funcionaría el panel. No corresponden a estadísticas ni resultados oficiales de la UFII.</p>
     </section>
 
     <footer class="footer-nav">

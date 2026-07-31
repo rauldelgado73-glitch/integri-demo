@@ -1,4 +1,4 @@
-# VERSION INTEGRI: ETICA_V2_SIN_NEUTRALIDAD - 22/07/2026
+# VERSION INTEGRI: MODULOS_COMPLETOS_DEMO - 31/07/2026
 import base64
 import html
 from pathlib import Path
@@ -46,9 +46,9 @@ def respuesta_guiada(texto: str) -> str:
         )
     if any(p in consulta for p in ("denuncia", "denunciar", "corrupción", "corrupcion", "represalia", "protección", "proteccion")):
         return (
-            "Si deseas presentar una denuncia, no describas aquí nombres, hechos sensibles ni evidencias. "
-            "INTEGRI puede explicarte el procedimiento general y orientarte hacia la Plataforma Digital Única de Denuncias. "
-            "La UFII brinda orientación preventiva y gestiona la derivación conforme a sus competencias."
+            "No coloques en este chat nombres, hechos sensibles ni evidencias. La Plataforma Digital Única de Denuncias permite "
+            "presentar una denuncia de forma anónima o identificada y entrega un código de seguimiento. Abre el botón «Canal de Denuncias» "
+            "para revisar la ruta y el acceso oficial."
         )
     if any(p in consulta for p in (
         "conflicto de interés", "conflicto de interes", "ética", "etica", "regalo", "favorecimiento", "conducta",
@@ -62,13 +62,14 @@ def respuesta_guiada(texto: str) -> str:
         )
     if any(p in consulta for p in ("declaración jurada", "declaracion jurada", "declaraciones juradas", "dji")):
         return (
-            "Puedo orientarte sobre obligaciones, plazos y canales vinculados con declaraciones juradas. "
-            "Para una respuesta exacta, indica solo el tipo de declaración o la etapa del trámite, sin proporcionar datos personales."
+            "Existen diferentes declaraciones, como la Declaración Jurada de Intereses y la de Ingresos, Bienes y Rentas. "
+            "La obligación, oportunidad y sistema dependen del cargo y del tipo de declaración. Revisa el botón «Declaraciones Juradas» "
+            "y confirma tu condición de obligado con el área responsable, sin proporcionar aquí datos personales."
         )
     if any(p in consulta for p in ("rvl", "registro de visitas", "visita", "agenda oficial")):
         return (
-            "El Registro de Visitas en Línea permite transparentar las visitas recibidas por la entidad. "
-            "Puedo orientarte sobre registro, consistencia de información, seguimiento y reportes, sin reemplazar al responsable operativo."
+            "El Registro de Visitas en Línea publica información sobre las visitas que reciben funcionarios y servidores públicos y el motivo "
+            "de estas. El botón «Registro de Visitas RVL» contiene una ruta rápida y la Directiva N.° 003-2026-PCM/SIP vigente."
         )
     if any(p in consulta for p in ("modelo de integridad", "componentes", "integridad institucional", "cultura de integridad")):
         return (
@@ -78,12 +79,13 @@ def respuesta_guiada(texto: str) -> str:
         )
     if any(p in consulta for p in ("checklist", "guía", "guia", "formato", "material")):
         return (
-            "El módulo Checklists y Guías reunirá herramientas de consulta rápida, pasos de verificación y materiales preventivos validados por la UFII."
+            "El módulo «Checklists y Guías» reúne verificaciones rápidas para consultas éticas, declaraciones juradas, denuncias, visitas "
+            "y derivaciones. Son ayudas preventivas y no sustituyen los formatos ni instrucciones oficiales."
         )
     if any(p in consulta for p in ("contacto", "correo", "anexo", "derivar", "ufii")):
         return (
-            "Puedes solicitar orientación directa a la UFII mediante integridad@dirisln.gob.pe o el Anexo 2005. "
-            "Evita incluir datos sensibles si solo necesitas una orientación inicial."
+            "Puedes revisar el botón «Derivar a UFII» para saber cuándo corresponde solicitar orientación. En el prototipo figuran "
+            "integridad@dirisln.gob.pe y el Anexo 2005; ambos datos deben ser confirmados por la UFII antes de la presentación oficial."
         )
     return (
         "Aún no tengo una respuesta guiada para esa consulta. Puedes reformularla usando uno de estos temas: "
@@ -489,6 +491,7 @@ html, body, [class*="css"] {
 .menu-card strong { font:700 clamp(1rem,2.2vw,1.35rem)/1.12 "Roboto Condensed",Arial,sans-serif; }
 
 .metrics-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; }
+.demo-caption { margin:-.5rem 0 .9rem; color:#5b7090; text-align:center; font:600 .78rem/1.3 Roboto,Arial,sans-serif; }
 .metric {
     min-height:168px;
     padding:1rem .75rem;
@@ -630,6 +633,53 @@ html, body, [class*="css"] {
 .route-step:before { counter-increment:ethics-step; content:counter(ethics-step); position:absolute; top:.75rem; left:.85rem; display:grid; place-items:center; width:28px; height:28px; color:#fff; background:#0870c0; border-radius:50%; font:800 .82rem Roboto,Arial,sans-serif; }
 .ethics-alert { padding:1.05rem 1.15rem; background:#fff8e7; border:1px solid #efcf7d; border-left:6px solid #e3a717; border-radius:12px; color:#694e18; font:500 .9rem/1.45 Roboto,Arial,sans-serif; }
 .ethics-alert strong { color:#774e00; }
+
+/* Pantallas informativas de los demás módulos */
+.info-page { padding:1.65rem; text-align:left; }
+.info-intro {
+    display:grid;
+    grid-template-columns:86px 1fr;
+    gap:1.1rem;
+    align-items:center;
+    padding:1.35rem;
+    color:#fff;
+    background:linear-gradient(135deg,#073b82,#0873c7);
+    border-radius:14px;
+}
+.info-intro .info-icon { display:grid; place-items:center; width:76px; height:76px; font-size:3.1rem; background:#fff; border-radius:50%; }
+.info-intro h2 { margin:0 0 .35rem; font:800 clamp(1.7rem,4vw,2.6rem)/1.05 Roboto,Arial,sans-serif; }
+.info-intro p { max-width:900px; margin:0; font:500 1rem/1.45 Roboto,Arial,sans-serif; }
+.info-section { margin-top:1.4rem; }
+.info-section h3 { margin:0 0 .4rem; color:#092b66; font:800 1.35rem/1.2 Roboto,Arial,sans-serif; }
+.info-lead { margin:0 0 1rem; color:#4d6586; font:500 .92rem/1.45 Roboto,Arial,sans-serif; }
+.info-grid { display:grid; gap:.75rem; }
+.info-grid.cols-2 { grid-template-columns:repeat(2,1fr); }
+.info-grid.cols-3 { grid-template-columns:repeat(3,1fr); }
+.info-grid.cols-4 { grid-template-columns:repeat(4,1fr); }
+.info-card { min-height:145px; padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; box-shadow:0 4px 10px rgba(18,61,121,.08); }
+.info-card .info-card-icon { display:block; margin-bottom:.55rem; font-size:2rem; line-height:1; }
+.info-card strong { display:block; margin-bottom:.35rem; color:#092b66; font:800 .98rem/1.2 Roboto,Arial,sans-serif; }
+.info-card p { margin:0; color:#405a7d; font:500 .84rem/1.42 Roboto,Arial,sans-serif; }
+.process-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; }
+.process-step { min-height:140px; padding:.85rem; color:#15355f; background:#eaf4ff; border:1px solid #bcd6f1; border-radius:12px; font:600 .84rem/1.4 Roboto,Arial,sans-serif; }
+.process-step span { display:grid; place-items:center; width:29px; height:29px; margin-bottom:.55rem; color:#fff; background:#0870c0; border-radius:50%; font:800 .82rem Roboto,Arial,sans-serif; }
+.info-note { padding:1.05rem 1.15rem; border-radius:12px; font:500 .9rem/1.45 Roboto,Arial,sans-serif; }
+.info-note strong { font-weight:800; }
+.info-note.blue { color:#174875; background:#edf6ff; border:1px solid #b9d7f3; border-left:6px solid #1681d0; }
+.info-note.yellow { color:#694e18; background:#fff8e7; border:1px solid #efcf7d; border-left:6px solid #e3a717; }
+.info-note.red { color:#7b3025; background:#fff1ee; border:1px solid #efc5bd; border-left:6px solid #d8543e; }
+.info-note.green { color:#17613f; background:#edf9f2; border:1px solid #bfe2ce; border-left:6px solid #198d50; }
+.info-list { margin:.35rem 0 0; padding-left:1.15rem; color:#405a7d; font:500 .86rem/1.5 Roboto,Arial,sans-serif; }
+.info-list li + li { margin-top:.3rem; }
+.guide-link { display:block; min-height:155px; padding:1rem; color:#092b66 !important; background:#fff; border:1px solid #c6daf3; border-radius:12px; text-decoration:none !important; box-shadow:0 4px 10px rgba(18,61,121,.08); transition:transform .16s ease, box-shadow .16s ease; }
+.guide-link:hover { transform:translateY(-2px); box-shadow:0 8px 15px rgba(18,61,121,.14); }
+.guide-link span { display:block; margin-bottom:.55rem; font-size:2rem; }
+.guide-link strong { display:block; margin-bottom:.35rem; font:800 .98rem/1.2 Roboto,Arial,sans-serif; }
+.guide-link small { color:#4d6586; font:500 .82rem/1.4 Roboto,Arial,sans-serif; }
+.contact-box { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+.contact-item { padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; }
+.contact-item span { display:block; color:#567091; font:700 .75rem Roboto,Arial,sans-serif; text-transform:uppercase; }
+.contact-item strong { display:block; margin-top:.35rem; color:#092b66; font:800 1rem/1.3 Roboto,Arial,sans-serif; }
 
 .chat-app {
     min-height:620px;
@@ -789,6 +839,10 @@ div.stButton > button {
     .ethics-intro .ethics-icon { margin:auto; }
     .situation-grid, .decision-route { grid-template-columns:1fr 1fr; }
     .ethics-columns { grid-template-columns:1fr; }
+    .info-page { padding:1rem; }
+    .info-intro { grid-template-columns:1fr; text-align:center; }
+    .info-intro .info-icon { margin:auto; }
+    .info-grid.cols-3, .info-grid.cols-4, .process-grid { grid-template-columns:1fr 1fr; }
 }
 
 @media (max-width: 420px) {
@@ -798,6 +852,7 @@ div.stButton > button {
     .metric { min-height:155px; }
     .footer-nav { padding:.6rem 0 0; gap:.5rem; }
     .situation-grid, .decision-route { grid-template-columns:1fr; }
+    .info-grid.cols-2, .info-grid.cols-3, .info-grid.cols-4, .process-grid, .contact-box { grid-template-columns:1fr; }
 }
 </style>
 """,
@@ -855,7 +910,8 @@ pagina = f"""
     </section>
 
     <section class="section panel">
-        <h2 class="section-title">Métricas</h2>
+        <h2 class="section-title">Métricas demostrativas</h2>
+        <p class="demo-caption">Valores ilustrativos del prototipo. No corresponden todavía a reportes oficiales de la UFII.</p>
         <div class="metrics-grid">
             <div class="metric">
                 <span class="metric-icon">🕘</span><div class="metric-title">Tiempo de Respuesta</div><div class="metric-rule"></div>
@@ -893,6 +949,31 @@ modulos = {
     "guias": ("✅", "Checklists y Guías", "Repositorio de materiales preventivos y herramientas de consulta rápida."),
     "derivacion": ("💼", "Derivar a UFII", "Espacio para identificar cuándo corresponde solicitar orientación directa a la UFII."),
 }
+
+
+def pagina_modulo_info(simbolo: str, titulo: str, descripcion: str, contenido: str) -> str:
+    """Construye una pantalla informativa manteniendo la identidad visual de INTEGRI."""
+    return f"""
+    <main class="integri-shell">
+        <header class="brand">
+            <h1>INTEGRI</h1>
+            <div class="brand-line"></div>
+            <h2>Asistente de Integridad Institucional</h2>
+            <p>Unidad Funcional de Integridad Institucional (UFII)</p>
+        </header>
+        <nav class="topic-bar" aria-label="Áreas de orientación">
+            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+        </nav>
+        <section class="info-page panel">
+            <div class="info-intro">
+                <div class="info-icon">{simbolo}</div>
+                <div><h2>{titulo}</h2><p>{descripcion}</p></div>
+            </div>
+            {contenido}
+        </section>
+    </main>
+    """
+
 
 modulo_actual = st.query_params.get("modulo", "")
 
@@ -1040,30 +1121,191 @@ elif modulo_actual == "etica":
         </section>
     </main>
     """
-elif modulo_actual in modulos:
-    simbolo, titulo, descripcion = modulos[modulo_actual]
-    pagina = f"""
-    <main class="integri-shell">
-        <header class="brand">
-            <h1>INTEGRI</h1>
-            <div class="brand-line"></div>
-            <h2>Asistente de Integridad Institucional</h2>
-            <p>Unidad Funcional de Integridad Institucional (UFII)</p>
-        </header>
-        <nav class="topic-bar" aria-label="Áreas de orientación">
-            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
-        </nav>
-        <section class="module-page panel">
-            <div class="module-symbol">{simbolo}</div>
-            <h2>{titulo}</h2>
-            <p>{descripcion}</p>
-            <div class="status-chip">Pantalla preparada · Contenido en construcción</div>
-            <p>En el siguiente paso incorporaremos la información oficial de este módulo.</p>
-            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
-        </section>
-    </main>
-    """
+elif modulo_actual == "declaraciones":
+    pagina = pagina_modulo_info(
+        "📄",
+        "Declaraciones Juradas",
+        "Guía para identificar el tipo de declaración, confirmar si corresponde presentarla y utilizar el canal oficial adecuado.",
+        """
+        <div class="info-section">
+            <h3>¿Qué declaración necesitas revisar?</h3>
+            <p class="info-lead">No todas las declaraciones aplican a todas las personas. La condición de obligado debe confirmarse según el cargo, la función y la comunicación del área responsable.</p>
+            <div class="info-grid cols-3">
+                <article class="info-card"><span class="info-card-icon">🔗</span><strong>Declaración Jurada de Intereses</strong><p>Informa vínculos familiares, políticos, económicos, comerciales e institucionales que podrían ser relevantes para la función pública.</p></article>
+                <article class="info-card"><span class="info-card-icon">🏠</span><strong>Ingresos, Bienes y Rentas</strong><p>Registra información patrimonial de autoridades, funcionarios o servidores comprendidos en la normativa aplicable.</p></article>
+                <article class="info-card"><span class="info-card-icon">🗂️</span><strong>Otras declaraciones institucionales</strong><p>Pueden existir formatos vinculados con incompatibilidades, impedimentos o conflictos de intereses. Deben validarse con el área responsable.</p></article>
+            </div>
+        </div>
 
+        <div class="info-section">
+            <h3>Ruta rápida para presentar correctamente</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Confirma con el área responsable si estás comprendido como obligado y qué declaración corresponde.</div>
+                <div class="process-step"><span>2</span>Identifica el momento de presentación comunicado: inicio, actualización periódica o cese, según corresponda.</div>
+                <div class="process-step"><span>3</span>Ingresa únicamente al sistema oficial indicado y revisa la información antes de firmar y enviar.</div>
+                <div class="process-step"><span>4</span>Conserva la constancia y comunica oportunamente cualquier dificultad técnica al área responsable.</div>
+            </div>
+        </div>
+
+        <div class="info-section info-note yellow"><strong>Importante:</strong> INTEGRI no determina quién está obligado ni calcula plazos individuales. No ingreses en este chatbot datos patrimoniales, familiares, documentos de identidad, claves ni declaraciones completas.</div>
+
+        <div class="model-actions">
+            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+            <a class="source-button" href="https://www.gob.pe/7368-presentar-declaracion-jurada-de-intereses-dji" target="_blank" rel="noopener noreferrer">Declaración de Intereses ↗</a>
+            <a class="source-button" href="https://www.gob.pe/13479-registrar-tu-declaracion-jurada-de-ingresos-y-de-bienes-y-rentas-ddjj-registrar-al-administrador-de-la-entidad-para-presentar-la-declaracion-jurada" target="_blank" rel="noopener noreferrer">Bienes y Rentas ↗</a>
+        </div>
+        """,
+    )
+elif modulo_actual == "denuncias":
+    pagina = pagina_modulo_info(
+        "📣",
+        "Canal de Denuncias",
+        "Información segura para comunicar un presunto acto de corrupción mediante la Plataforma Digital Única de Denuncias del Ciudadano.",
+        """
+        <div class="info-section">
+            <h3>Antes de denunciar</h3>
+            <p class="info-lead">Utiliza este módulo para conocer la ruta. Los hechos, nombres y evidencias deben registrarse en el canal oficial, nunca en el chatbot.</p>
+            <div class="info-grid cols-3">
+                <article class="info-card"><span class="info-card-icon">🧭</span><strong>Identifica la entidad</strong><p>Selecciona la entidad pública donde habría ocurrido el presunto acto de corrupción.</p></article>
+                <article class="info-card"><span class="info-card-icon">📝</span><strong>Describe los hechos</strong><p>Indica fecha, lugar, motivo y una descripción clara. Adjunta sustento solo si lo tienes disponible.</p></article>
+                <article class="info-card"><span class="info-card-icon">🔐</span><strong>Elige la modalidad</strong><p>La plataforma permite denunciar de forma anónima o identificada y entrega un código de seguimiento.</p></article>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Ruta en la plataforma oficial</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Ingresa a la Plataforma Digital Única de Denuncias del Ciudadano.</div>
+                <div class="process-step"><span>2</span>Selecciona la entidad y registra la información solicitada sobre los hechos.</div>
+                <div class="process-step"><span>3</span>Elige si presentarás la denuncia de forma anónima o identificándote.</div>
+                <div class="process-step"><span>4</span>Guarda el código asignado para consultar posteriormente el estado del trámite.</div>
+            </div>
+        </div>
+
+        <div class="info-section info-note green"><strong>Medidas de protección:</strong> el Decreto Legislativo N.° 1327 contempla mecanismos de protección para denunciantes de buena fe. Su procedencia debe ser solicitada y evaluada conforme a la normativa aplicable.</div>
+        <div class="info-section info-note red"><strong>No confundas los canales:</strong> una denuncia por presunta corrupción no es lo mismo que una queja por atención, un reclamo de servicio, una controversia laboral o una emergencia de salud.</div>
+
+        <div class="model-actions">
+            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+            <a class="source-button" href="https://www.gob.pe/21129-denunciar-un-presunto-acto-de-corrupcion" target="_blank" rel="noopener noreferrer">Presentar denuncia ↗</a>
+            <a class="source-button" href="https://www.gob.pe/institucion/presidencia/normas-legales/2614867-1327" target="_blank" rel="noopener noreferrer">Medidas de protección ↗</a>
+        </div>
+        """,
+    )
+elif modulo_actual == "rvl":
+    pagina = pagina_modulo_info(
+        "🪪",
+        "Registro de Visitas RVL",
+        "Orientación para registrar y publicar información completa y oportuna sobre las visitas y agendas oficiales de la entidad.",
+        """
+        <div class="info-section">
+            <h3>¿Para qué sirve?</h3>
+            <p class="info-lead">El Registro de Visitas en Línea fomenta la transparencia al publicar, en tiempo real, información sobre las visitas que reciben funcionarios y servidores públicos y el motivo de estas.</p>
+            <div class="info-grid cols-3">
+                <article class="info-card"><span class="info-card-icon">👤</span><strong>Identificación de la visita</strong><p>Permite conocer quién visita la entidad, a quién visita y cuál es el motivo declarado.</p></article>
+                <article class="info-card"><span class="info-card-icon">🕒</span><strong>Registro oportuno</strong><p>La información debe mantenerse completa y actualizada de acuerdo con el procedimiento institucional.</p></article>
+                <article class="info-card"><span class="info-card-icon">📅</span><strong>Agendas oficiales</strong><p>Complementan la transparencia de las actividades oficiales comprendidas en la directiva vigente.</p></article>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Verificación operativa básica</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Verifica la identidad de la visita y el servidor o funcionario que la recibirá.</div>
+                <div class="process-step"><span>2</span>Registra el motivo de manera clara, evitando descripciones genéricas o confusas.</div>
+                <div class="process-step"><span>3</span>Confirma que la información requerida esté completa y corresponda a la visita realizada.</div>
+                <div class="process-step"><span>4</span>Registra la salida o comunica cualquier omisión al responsable del RVL para su corrección.</div>
+            </div>
+        </div>
+
+        <div class="info-section info-note blue"><strong>Norma vigente:</strong> la Directiva N.° 003-2026-PCM/SIP, aprobada el 23 de julio de 2026, regula actualmente el uso del Registro de Visitas en Línea y del Registro de Agendas Oficiales y dejó sin efecto la directiva de 2022.</div>
+
+        <div class="model-actions">
+            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+            <a class="source-button" href="https://visitas.servicios.gob.pe/" target="_blank" rel="noopener noreferrer">Abrir Registro de Visitas ↗</a>
+            <a class="source-button" href="https://www.gob.pe/institucion/pcm/normas-legales/8417717-008-2026-pcm-sip" target="_blank" rel="noopener noreferrer">Directiva vigente ↗</a>
+        </div>
+        """,
+    )
+elif modulo_actual == "guias":
+    pagina = pagina_modulo_info(
+        "✅",
+        "Checklists y Guías",
+        "Herramientas de consulta rápida para verificar acciones preventivas antes de continuar con un trámite o solicitar orientación.",
+        """
+        <div class="info-section">
+            <h3>Elige la guía que necesitas</h3>
+            <p class="info-lead">Estas ayudas resumen verificaciones básicas. Puedes abrir el módulo relacionado para revisar la explicación y las fuentes oficiales.</p>
+            <div class="info-grid cols-3">
+                <a class="guide-link" href="?modulo=etica" target="_self"><span>⚖️</span><strong>Antes de una decisión ética</strong><small>Identifica intereses, beneficios, presiones, recursos públicos y posibles riesgos.</small></a>
+                <a class="guide-link" href="?modulo=declaraciones" target="_self"><span>📄</span><strong>Antes de presentar una declaración</strong><small>Confirma obligación, tipo, momento, sistema oficial y constancia de presentación.</small></a>
+                <a class="guide-link" href="?modulo=denuncias" target="_self"><span>📣</span><strong>Antes de presentar una denuncia</strong><small>Identifica entidad, fecha, lugar, descripción, modalidad y código de seguimiento.</small></a>
+                <a class="guide-link" href="?modulo=rvl" target="_self"><span>🪪</span><strong>Antes de cerrar una visita</strong><small>Verifica identidad, destino, motivo, información completa y registro de salida.</small></a>
+                <a class="guide-link" href="?modulo=derivacion" target="_self"><span>💼</span><strong>Antes de derivar a la UFII</strong><small>Define el tema, la orientación requerida y el canal correcto sin exponer datos sensibles.</small></a>
+                <a class="guide-link" href="?modulo=modelo" target="_self"><span>🛡️</span><strong>Modelo de Integridad</strong><small>Consulta sus nueve componentes y las etapas de implementación.</small></a>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Checklist universal antes de enviar</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>¿Identifiqué correctamente el tema y el canal que corresponde?</div>
+                <div class="process-step"><span>2</span>¿Evité colocar datos personales o sensibles en espacios no autorizados?</div>
+                <div class="process-step"><span>3</span>¿Revisé la información y utilicé una fuente o sistema oficial?</div>
+                <div class="process-step"><span>4</span>¿Guardé la constancia, código o evidencia de la acción realizada?</div>
+            </div>
+        </div>
+
+        <div class="info-section info-note yellow"><strong>Versión demostrativa:</strong> estos checklists no reemplazan formatos, directivas, manuales ni instrucciones internas. Los materiales descargables serán incorporados después de la validación de la UFII.</div>
+        <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio</a></div>
+        """,
+    )
+elif modulo_actual == "derivacion":
+    pagina = pagina_modulo_info(
+        "💼",
+        "Derivar a la UFII",
+        "Ruta para identificar cuándo corresponde solicitar orientación o asistencia técnica a la Unidad Funcional de Integridad Institucional.",
+        """
+        <div class="info-section">
+            <h3>¿Cuándo corresponde consultar a la UFII?</h3>
+            <div class="info-grid cols-4">
+                <article class="info-card"><span class="info-card-icon">⚖️</span><strong>Duda ética preventiva</strong><p>Cuando necesitas orientación antes de tomar una decisión vinculada con tus funciones.</p></article>
+                <article class="info-card"><span class="info-card-icon">🛡️</span><strong>Modelo de Integridad</strong><p>Para asistencia sobre componentes, actividades, evidencias o responsabilidades de implementación.</p></article>
+                <article class="info-card"><span class="info-card-icon">⚠️</span><strong>Riesgos de integridad</strong><p>Cuando identificas una situación o proceso vulnerable que requiere una medida preventiva.</p></article>
+                <article class="info-card"><span class="info-card-icon">🧭</span><strong>Canal institucional</strong><p>Cuando no sabes qué oficina o mecanismo corresponde para atender correctamente tu situación.</p></article>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>La UFII orienta, pero no reemplaza a otras instancias</h3>
+            <div class="info-grid cols-2">
+                <article class="info-card"><span class="info-card-icon">✅</span><strong>Sí corresponde</strong><ul class="info-list"><li>Orientación preventiva en integridad y ética pública.</li><li>Asistencia para implementar el Modelo de Integridad.</li><li>Orientación sobre canales de denuncia y medidas preventivas.</li><li>Articulación y seguimiento de acciones de integridad.</li></ul></article>
+                <article class="info-card"><span class="info-card-icon">🚫</span><strong>No corresponde</strong><ul class="info-list"><li>Determinar responsabilidades o imponer sanciones.</li><li>Resolver controversias laborales o administrativas.</li><li>Reemplazar a Recursos Humanos, Asesoría Jurídica, Secretaría Técnica u OCI.</li><li>Recibir datos sensibles mediante este chatbot.</li></ul></article>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Ruta de derivación</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Define en una frase el tema y la orientación que necesitas.</div>
+                <div class="process-step"><span>2</span>Evita incluir inicialmente nombres, DNI, historias clínicas, evidencias o información reservada.</div>
+                <div class="process-step"><span>3</span>Utiliza el correo o anexo institucional confirmado por la UFII.</div>
+                <div class="process-step"><span>4</span>Sigue las indicaciones recibidas y conserva la constancia de la consulta o derivación.</div>
+            </div>
+        </div>
+
+        <div class="info-section contact-box">
+            <div class="contact-item"><span>Correo configurado en el prototipo</span><strong>integridad@dirisln.gob.pe</strong></div>
+            <div class="contact-item"><span>Anexo configurado en el prototipo</span><strong>2005</strong></div>
+        </div>
+        <div class="info-section info-note yellow"><strong>Validación requerida:</strong> la coordinadora de la UFII debe confirmar el correo, el anexo, los horarios y la ruta interna antes de presentar esta versión como canal institucional definitivo.</div>
+
+        <div class="model-actions">
+            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+            <a class="source-button" href="https://www.gob.pe/institucion/pcm/normas-legales/7644478-002-2026-pcm-sip" target="_blank" rel="noopener noreferrer">Directiva del Modelo de Integridad ↗</a>
+        </div>
+        """,
+    )
 if modulo_actual in modulos:
     st.html(pagina)
     st.stop()

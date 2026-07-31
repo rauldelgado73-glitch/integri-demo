@@ -1,4 +1,4 @@
-# VERSION INTEGRI: RVL_ICONO_HTML_CSS_COMPATIBLE - 31/07/2026
+# VERSION INTEGRI: PANEL_INTEGRADO_INTERACTIVO - 31/07/2026
 import base64
 import html
 from pathlib import Path
@@ -589,10 +589,18 @@ html, body, [class*="css"] {
 .metric.warn .metric-value { color:#d24b36; }
 .metric-value small { font-size:.8rem; font-weight:600; color:var(--texto); }
 .metric-text { font:600 .83rem/1.15 Roboto,Arial,sans-serif; }
+.metric-link { color:var(--texto) !important; text-decoration:none !important; transition:transform .16s ease, box-shadow .16s ease; }
+.metric-link:hover { transform:translateY(-3px); border-color:#78a9dc; box-shadow:0 9px 17px rgba(18,56,116,.17); }
+.panel-detail { margin-top:1rem; padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; box-shadow:0 4px 10px rgba(18,61,121,.08); }
+.panel-detail h3 { margin:0 0 .35rem; color:#092b66; font:800 1.15rem/1.2 Roboto,Arial,sans-serif; }
+.panel-detail > p { margin:.2rem 0 .8rem; color:#546c8d; font:500 .84rem/1.4 Roboto,Arial,sans-serif; }
+.demo-flow { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; }
+.demo-flow-step { position:relative; min-height:105px; padding:.8rem; color:#24476f; background:#edf5ff; border:1px solid #c2d9f2; border-radius:10px; font:600 .8rem/1.35 Roboto,Arial,sans-serif; }
+.demo-flow-step b { display:grid; place-items:center; width:27px; height:27px; margin-bottom:.45rem; color:#fff; background:#0755a8; border-radius:50%; }
 
 .footer-nav {
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr;
     gap:2rem;
     padding: .65rem 8% 0;
     border-top:2px solid #d2e0f4;
@@ -945,6 +953,7 @@ div.stButton > button {
     .menu-icon { font-size:2.9rem; }
     .metrics-grid { grid-template-columns:repeat(2,1fr); }
     .admin-kpis { grid-template-columns:repeat(2,1fr); }
+    .demo-flow { grid-template-columns:repeat(2,1fr); }
     .source-grid { grid-template-columns:1fr; }
     .admin-header { align-items:flex-start; }
     .chat-message { max-width:94%; }
@@ -980,6 +989,7 @@ div.stButton > button {
     .footer-nav { grid-template-columns:1fr; padding:.6rem 0 0; gap:.8rem; }
     .admin-kpis { grid-template-columns:1fr 1fr; }
     .topic-row { grid-template-columns:110px 1fr 35px; }
+    .demo-flow { grid-template-columns:1fr; }
     .situation-grid, .decision-route { grid-template-columns:1fr; }
     .info-grid.cols-2, .info-grid.cols-3, .info-grid.cols-4, .process-grid, .contact-box { grid-template-columns:1fr; }
 }
@@ -987,6 +997,85 @@ div.stButton > button {
 """,
     unsafe_allow_html=True,
 )
+
+
+def detalle_panel_demostrativo(vista: str) -> str:
+    """Detalle interactivo del panel principal con información ficticia."""
+    if vista == "consultas":
+        return """
+        <div class="panel-detail">
+            <h3>💬 Detalle de consultas recibidas</h3>
+            <p>Muestra de cómo se presentarían los registros generados por el chat y otros canales.</p>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Código</th><th>Fecha</th><th>Canal</th><th>Tema</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>INT-001</td><td>03/07/2026</td><td>Chat INTEGRI</td><td>Conflicto de intereses</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                    <tr><td>INT-002</td><td>05/07/2026</td><td>Chat INTEGRI</td><td>Declaración jurada</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                    <tr><td>INT-003</td><td>08/07/2026</td><td>Correo</td><td>Modelo de Integridad</td><td><span class="status-pill sent">Derivada</span></td></tr>
+                    <tr><td>INT-004</td><td>11/07/2026</td><td>Anexo</td><td>Registro de Visitas</td><td><span class="status-pill wait">Seguimiento</span></td></tr>
+                </tbody>
+            </table></div>
+        </div>
+        """
+    if vista == "orientaciones":
+        return """
+        <div class="panel-detail">
+            <h3>✅ Orientaciones brindadas</h3>
+            <p>Ejemplo de clasificación de las respuestas preventivas proporcionadas durante el periodo.</p>
+            <div class="topic-bars">
+                <div class="topic-row"><span>Ética pública</span><div class="topic-track"><div class="topic-fill" style="width:78%"></div></div><b>14</b></div>
+                <div class="topic-row"><span>Declaraciones juradas</span><div class="topic-track"><div class="topic-fill" style="width:55%"></div></div><b>10</b></div>
+                <div class="topic-row"><span>Registro de Visitas</span><div class="topic-track"><div class="topic-fill" style="width:38%"></div></div><b>7</b></div>
+                <div class="topic-row"><span>Canal de denuncias</span><div class="topic-track"><div class="topic-fill" style="width:28%"></div></div><b>5</b></div>
+            </div>
+        </div>
+        """
+    if vista == "alertas":
+        return """
+        <div class="panel-detail">
+            <h3>⚠️ Alertas preventivas identificadas</h3>
+            <p>Situaciones ficticias detectadas durante una orientación, sin mostrar nombres ni información sensible.</p>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Alerta</th><th>Situación general</th><th>Acción preventiva</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>AL-001</td><td>Posible conflicto de intereses</td><td>Orientación previa a la decisión</td><td><span class="status-pill ok">Atendida</span></td></tr>
+                    <tr><td>AL-002</td><td>Ofrecimiento de obsequio</td><td>Información sobre prohibiciones</td><td><span class="status-pill ok">Atendida</span></td></tr>
+                    <tr><td>AL-003</td><td>Registro RVL incompleto</td><td>Verificación y regularización</td><td><span class="status-pill wait">Seguimiento</span></td></tr>
+                </tbody>
+            </table></div>
+        </div>
+        """
+    if vista == "derivaciones":
+        return """
+        <div class="panel-detail">
+            <h3>🗂️ Seguimiento de derivaciones</h3>
+            <p>Ejemplo de trazabilidad desde la orientación inicial hasta la atención o cierre por la UFII.</p>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Código</th><th>Tema</th><th>Derivación</th><th>Responsable</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>DER-001</td><td>Asistencia sobre Modelo de Integridad</td><td>08/07/2026</td><td>UFII</td><td><span class="status-pill ok">Cerrada</span></td></tr>
+                    <tr><td>DER-002</td><td>Orientación ética especializada</td><td>12/07/2026</td><td>UFII</td><td><span class="status-pill wait">En revisión</span></td></tr>
+                    <tr><td>DER-003</td><td>Incidencia operativa RVL</td><td>18/07/2026</td><td>UFII / RVL</td><td><span class="status-pill sent">Derivada</span></td></tr>
+                </tbody>
+            </table></div>
+        </div>
+        """
+    return """
+    <div class="panel-detail">
+        <h3>🔄 Así funcionaría el seguimiento</h3>
+        <p>Los registros se actualizarían desde el chat, formularios y controles internos autorizados.</p>
+        <div class="demo-flow">
+            <div class="demo-flow-step"><b>1</b>INTEGRI asigna un código y registra fecha, canal y tema.</div>
+            <div class="demo-flow-step"><b>2</b>La consulta se clasifica como orientación, alerta o posible derivación.</div>
+            <div class="demo-flow-step"><b>3</b>La UFII actualiza el estado cuando corresponde una atención especializada.</div>
+            <div class="demo-flow-step"><b>4</b>El panel consolida cifras, temas y estados sin exhibir datos personales.</div>
+        </div>
+    </div>
+    """
+
+
+panel_vista_inicio = st.query_params.get("panel", "resumen")
+detalle_panel_inicio = detalle_panel_demostrativo(panel_vista_inicio)
 
 
 pagina = f"""
@@ -1038,10 +1127,34 @@ pagina = f"""
         </div>
     </section>
 
+    <section id="panel-seguimiento" class="section panel">
+        <h2 class="section-title">Panel de seguimiento</h2>
+        <p class="demo-caption">Selecciona una tarjeta para visualizar cómo se presentarían los registros y el proceso de seguimiento.</p>
+        <div class="metrics-grid">
+            <a class="metric metric-link" href="?panel=consultas#panel-seguimiento" target="_self">
+                <span class="metric-icon">💬</span><div class="metric-title">Consultas recibidas</div><div class="metric-rule"></div>
+                <div class="metric-value">42 <small>durante el mes</small></div>
+            </a>
+            <a class="metric metric-link" href="?panel=orientaciones#panel-seguimiento" target="_self">
+                <span class="metric-icon">✅</span><div class="metric-title">Orientaciones brindadas</div><div class="metric-rule"></div>
+                <div class="metric-value">36 <small>respuestas registradas</small></div>
+            </a>
+            <a class="metric metric-link warn" href="?panel=alertas#panel-seguimiento" target="_self">
+                <span class="metric-icon">⚠️</span><div class="metric-title">Alertas preventivas identificadas</div><div class="metric-rule"></div>
+                <div class="metric-value">7 <small>situaciones orientadas</small></div>
+            </a>
+            <a class="metric metric-link folder" href="?panel=derivaciones#panel-seguimiento" target="_self">
+                <span class="metric-icon">🗂️</span><div class="metric-title">Derivaciones a UFII</div><div class="metric-rule"></div>
+                <div class="metric-value">6 <small>solicitudes derivadas</small></div>
+            </a>
+        </div>
+        {detalle_panel_inicio}
+        <p class="demo-disclaimer"><strong>Datos simulados para la maqueta:</strong> todas las cifras, códigos y situaciones son ficticias. Se muestran únicamente para demostrar cómo funcionaría el seguimiento; no representan carga laboral ni resultados oficiales de la UFII.</p>
+    </section>
+
     <footer class="footer-nav">
         <div>💬 &nbsp; Ayuda</div>
         <div>🔎 &nbsp; Seguimiento de consulta</div>
-        <a href="?modulo=panel_admin&vista=resumen" target="_self">🔐 &nbsp; Acceso administrativo (demo)</a>
     </footer>
 </main>
 """
@@ -1056,7 +1169,6 @@ modulos = {
     "rvl": (icono_rvl_html, "Registro de Visitas RVL", "Espacio de orientación operativa sobre el Registro de Visitas en Línea."),
     "guias": ("✅", "Checklists y Guías", "Repositorio de materiales preventivos y herramientas de consulta rápida."),
     "derivacion": ("💼", "Derivar a UFII", "Espacio para identificar cuándo corresponde solicitar orientación directa a la UFII."),
-    "panel_admin": ("🔐", "Panel administrativo", "Vista demostrativa de seguimiento y control para usuarios autorizados."),
 }
 
 
@@ -1223,11 +1335,8 @@ def pagina_panel_control(vista: str) -> str:
 
 
 modulo_actual = st.query_params.get("modulo", "")
-vista_panel = st.query_params.get("vista", "resumen")
 
-if modulo_actual == "panel_admin":
-    pagina = pagina_panel_control(vista_panel)
-elif modulo_actual == "modelo":
+if modulo_actual == "modelo":
     pagina = """
     <main class="integri-shell">
         <header class="brand">
@@ -1568,22 +1677,6 @@ elif modulo_actual == "derivacion":
     )
 if modulo_actual in modulos:
     st.html(pagina)
-    if modulo_actual == "panel_admin":
-        csv_demostrativo = """codigo,fecha,canal,tema,estado,derivacion
-INT-2026-001,03/07/2026,Chat web,Conflicto de intereses,Orientada,No
-INT-2026-002,05/07/2026,Chat web,Declaración jurada,Orientada,No
-INT-2026-003,08/07/2026,Correo,Modelo de Integridad,Derivada,Sí
-INT-2026-004,11/07/2026,Chat web,Registro de Visitas,Orientada,No
-INT-2026-005,15/07/2026,Anexo,Canal de denuncias,En seguimiento,Sí
-"""
-        st.download_button(
-            "⬇️ Descargar base CSV de ejemplo",
-            data=csv_demostrativo.encode("utf-8-sig"),
-            file_name="INTEGRI_seguimiento_datos_simulados.csv",
-            mime="text/csv",
-            use_container_width=True,
-        )
-        st.caption("🔐 En la versión real, este panel y sus descargas estarían disponibles solamente para usuarios autorizados.")
     st.stop()
 
 cabecera_inicio = pagina_inicio.split('<section class="hero panel">', 1)[0] + "</main>"
@@ -1595,7 +1688,7 @@ columna_robot, columna_chat = st.columns([1, 2], gap="medium")
 
 with columna_robot:
     with st.container(border=True):
-        st.image(Path(__file__).parent / "assets" / "integri_robot.png", use_container_width=True)
+        st.image(Path(__file__).parent / "assets" / "integri_robot.png", width="stretch")
         st.markdown("<div style='text-align:center;color:#0a2459;font-weight:800;'>INTEGRI</div>", unsafe_allow_html=True)
         st.caption("Asistente virtual de orientación preventiva")
         st.html(
@@ -1636,7 +1729,7 @@ with columna_chat:
                 label_visibility="collapsed",
             )
         with columna_enviar:
-            enviar = st.form_submit_button("Enviar", use_container_width=True)
+            enviar = st.form_submit_button("Enviar", width="stretch")
 
     if enviar and pregunta.strip():
         pregunta_limpia = pregunta.strip()
@@ -1648,7 +1741,7 @@ with columna_chat:
     with columna_seguridad:
         st.caption("🔒 No ingreses nombres, DNI ni datos sensibles.")
     with columna_borrar:
-        if st.session_state.historial_chat and st.button("Limpiar", use_container_width=True):
+        if st.session_state.historial_chat and st.button("Limpiar", width="stretch"):
             st.session_state.historial_chat = []
             st.rerun()
 

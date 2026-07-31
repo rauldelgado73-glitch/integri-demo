@@ -1,4 +1,4 @@
-# VERSION INTEGRI: MODULOS_COMPLETOS_DEMO - 31/07/2026
+# VERSION INTEGRI: RVL_DIRECTIVA_003_2026_ICONO_VISITANTE - 31/07/2026
 import base64
 import html
 from pathlib import Path
@@ -28,6 +28,18 @@ robot_html = (
     if robot
     else '<div class="robot-fallback">🤖</div>'
 )
+
+# Icono vectorial propio para RVL. Evita depender de emojis que Windows o el
+# navegador pueden mostrar como un cuadro vacío.
+icono_rvl_html = """
+<svg class="rvl-icon-svg" viewBox="0 0 72 72" role="img" aria-label="Credencial de visitante">
+    <rect x="5" y="12" width="62" height="50" rx="7" fill="#eaf4ff" stroke="#0755a8" stroke-width="3.5"/>
+    <rect x="26" y="6" width="20" height="10" rx="4" fill="#063b82"/>
+    <circle cx="24" cy="31" r="8" fill="#0755a8"/>
+    <path d="M12 52c1-9 6.5-14 12-14s11 5 12 14" fill="#168fe4"/>
+    <path d="M43 27h16M43 36h16M43 45h11" fill="none" stroke="#0755a8" stroke-width="3.5" stroke-linecap="round"/>
+</svg>
+"""
 
 
 def respuesta_guiada(texto: str) -> str:
@@ -488,6 +500,9 @@ html, body, [class*="css"] {
 }
 .menu-card:hover { transform:translateY(-3px); border-color:#7eaddf; box-shadow:0 9px 17px rgba(18,56,116,.17); }
 .menu-icon { font-size:3.7rem; line-height:1; filter:drop-shadow(0 2px 1px rgba(10,55,115,.16)); }
+.rvl-icon-svg { display:block; width:64px; height:64px; margin:auto; }
+.menu-icon.rvl-menu-icon { display:block; }
+.menu-icon.rvl-menu-icon .rvl-icon-svg { width:68px; height:68px; }
 .menu-card strong { font:700 clamp(1rem,2.2vw,1.35rem)/1.12 "Roboto Condensed",Arial,sans-serif; }
 
 .metrics-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; }
@@ -647,6 +662,7 @@ html, body, [class*="css"] {
     border-radius:14px;
 }
 .info-intro .info-icon { display:grid; place-items:center; width:76px; height:76px; font-size:3.1rem; background:#fff; border-radius:50%; }
+.info-intro .info-icon .rvl-icon-svg { width:62px; height:62px; }
 .info-intro h2 { margin:0 0 .35rem; font:800 clamp(1.7rem,4vw,2.6rem)/1.05 Roboto,Arial,sans-serif; }
 .info-intro p { max-width:900px; margin:0; font:500 1rem/1.45 Roboto,Arial,sans-serif; }
 .info-section { margin-top:1.4rem; }
@@ -674,6 +690,7 @@ html, body, [class*="css"] {
 .guide-link { display:block; min-height:155px; padding:1rem; color:#092b66 !important; background:#fff; border:1px solid #c6daf3; border-radius:12px; text-decoration:none !important; box-shadow:0 4px 10px rgba(18,61,121,.08); transition:transform .16s ease, box-shadow .16s ease; }
 .guide-link:hover { transform:translateY(-2px); box-shadow:0 8px 15px rgba(18,61,121,.14); }
 .guide-link span { display:block; margin-bottom:.55rem; font-size:2rem; }
+.guide-link .guide-rvl-icon .rvl-icon-svg { width:43px; height:43px; margin:0; }
 .guide-link strong { display:block; margin-bottom:.35rem; font:800 .98rem/1.2 Roboto,Arial,sans-serif; }
 .guide-link small { color:#4d6586; font:500 .82rem/1.4 Roboto,Arial,sans-serif; }
 .contact-box { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
@@ -903,7 +920,7 @@ pagina = f"""
             <a class="menu-link" href="?modulo=etica" target="_self"><div class="menu-card"><span class="menu-icon">⚖️</span><strong>Consultas de Ética</strong></div></a>
             <a class="menu-link" href="?modulo=declaraciones" target="_self"><div class="menu-card"><span class="menu-icon">📄</span><strong>Declaraciones Juradas</strong></div></a>
             <a class="menu-link" href="?modulo=denuncias" target="_self"><div class="menu-card"><span class="menu-icon">📣</span><strong>Canal de Denuncias</strong></div></a>
-            <a class="menu-link" href="?modulo=rvl" target="_self"><div class="menu-card"><span class="menu-icon">🪪</span><strong>Registro de Visitas RVL</strong></div></a>
+            <a class="menu-link" href="?modulo=rvl" target="_self"><div class="menu-card"><span class="menu-icon rvl-menu-icon">{icono_rvl_html}</span><strong>Registro de Visitas RVL</strong></div></a>
             <a class="menu-link" href="?modulo=guias" target="_self"><div class="menu-card"><span class="menu-icon">✅</span><strong>Checklists y Guías</strong></div></a>
             <a class="menu-link" href="?modulo=derivacion" target="_self"><div class="menu-card"><span class="menu-icon">💼</span><strong>Derivar a UFII</strong></div></a>
         </div>
@@ -945,7 +962,7 @@ modulos = {
     "etica": ("⚖️", "Consultas de Ética", "Espacio para brindar orientación preventiva ante dudas y dilemas éticos."),
     "declaraciones": ("📄", "Declaraciones Juradas", "Espacio para orientar sobre obligaciones, plazos y canales aplicables."),
     "denuncias": ("📣", "Canal de Denuncias", "Espacio para informar sobre el canal oficial y las medidas de protección."),
-    "rvl": ("🪪", "Registro de Visitas RVL", "Espacio de orientación operativa sobre el Registro de Visitas en Línea."),
+    "rvl": (icono_rvl_html, "Registro de Visitas RVL", "Espacio de orientación operativa sobre el Registro de Visitas en Línea."),
     "guias": ("✅", "Checklists y Guías", "Repositorio de materiales preventivos y herramientas de consulta rápida."),
     "derivacion": ("💼", "Derivar a UFII", "Espacio para identificar cuándo corresponde solicitar orientación directa a la UFII."),
 }
@@ -1194,31 +1211,41 @@ elif modulo_actual == "denuncias":
     )
 elif modulo_actual == "rvl":
     pagina = pagina_modulo_info(
-        "🪪",
+        icono_rvl_html,
         "Registro de Visitas RVL",
-        "Orientación para registrar y publicar información completa y oportuna sobre las visitas y agendas oficiales de la entidad.",
-        """
+        "Orientación para registrar y publicar información completa y oportuna sobre las visitas y agendas oficiales de la entidad, conforme a la directiva vigente.",
+        f"""
         <div class="info-section">
             <h3>¿Para qué sirve?</h3>
-            <p class="info-lead">El Registro de Visitas en Línea fomenta la transparencia al publicar, en tiempo real, información sobre las visitas que reciben funcionarios y servidores públicos y el motivo de estas.</p>
+            <p class="info-lead">El Registro de Visitas en Línea publica, en tiempo real, la información de las visitas que se producen en las entidades públicas. La directiva considera visitante a una persona natural o a quien representa a una persona jurídica, pública o privada, nacional o extranjera.</p>
             <div class="info-grid cols-3">
-                <article class="info-card"><span class="info-card-icon">👤</span><strong>Identificación de la visita</strong><p>Permite conocer quién visita la entidad, a quién visita y cuál es el motivo declarado.</p></article>
-                <article class="info-card"><span class="info-card-icon">🕒</span><strong>Registro oportuno</strong><p>La información debe mantenerse completa y actualizada de acuerdo con el procedimiento institucional.</p></article>
-                <article class="info-card"><span class="info-card-icon">📅</span><strong>Agendas oficiales</strong><p>Complementan la transparencia de las actividades oficiales comprendidas en la directiva vigente.</p></article>
+                <article class="info-card"><span class="info-card-icon">{icono_rvl_html}</span><strong>Persona visitante</strong><p>Identifica a la persona natural o al representante de una persona jurídica que ingresa a la entidad.</p></article>
+                <article class="info-card"><span class="info-card-icon">🕒</span><strong>Registro en tiempo real</strong><p>La entrada y la salida se registran regularmente en tiempo real y, excepcionalmente, hasta las 23:59 del día de ingreso.</p></article>
+                <article class="info-card"><span class="info-card-icon">📅</span><strong>Agendas oficiales</strong><p>Publican actividades oficiales de la alta dirección y determinadas gestiones de intereses atendidas fuera de la entidad.</p></article>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>Información que debe consignarse</h3>
+            <div class="info-grid cols-3">
+                <article class="info-card"><strong>Identificación y tipo</strong><p>Fecha; nombres, apellidos y documento de identidad; y tipo de persona: natural o jurídica.</p></article>
+                <article class="info-card"><strong>Destino y motivo</strong><p>Motivo de visita, persona visitada o servidor responsable, cargo, unidad de organización y lugar específico.</p></article>
+                <article class="info-card"><strong>Control de permanencia</strong><p>Hora de ingreso y hora de salida. La visita comienza con el ingreso y culmina con la salida.</p></article>
             </div>
         </div>
 
         <div class="info-section">
             <h3>Verificación operativa básica</h3>
             <div class="process-grid">
-                <div class="process-step"><span>1</span>Verifica la identidad de la visita y el servidor o funcionario que la recibirá.</div>
-                <div class="process-step"><span>2</span>Registra el motivo de manera clara, evitando descripciones genéricas o confusas.</div>
-                <div class="process-step"><span>3</span>Confirma que la información requerida esté completa y corresponda a la visita realizada.</div>
-                <div class="process-step"><span>4</span>Registra la salida o comunica cualquier omisión al responsable del RVL para su corrección.</div>
+                <div class="process-step"><span>1</span>Corrobora la identidad del visitante con un documento válido con fotografía.</div>
+                <div class="process-step"><span>2</span>Registra el tipo de persona, el motivo, el destino, la persona visitada y el lugar específico.</div>
+                <div class="process-step"><span>3</span>Confirma el ingreso y revisa que todos los datos obligatorios sean correctos y completos.</div>
+                <div class="process-step"><span>4</span>Al culminar la visita, registra la hora de salida. Si hubo una omisión, aplica la ruta de registro extemporáneo.</div>
             </div>
         </div>
 
-        <div class="info-section info-note blue"><strong>Norma vigente:</strong> la Directiva N.° 003-2026-PCM/SIP, aprobada el 23 de julio de 2026, regula actualmente el uso del Registro de Visitas en Línea y del Registro de Agendas Oficiales y dejó sin efecto la directiva de 2022.</div>
+        <div class="info-section info-note blue"><strong>Norma vigente:</strong> la Directiva N.° 003-2026-PCM/SIP, aprobada mediante Resolución N.° 008-2026-PCM/SIP del 23 de julio de 2026, establece las disposiciones para el uso del Registro de Visitas en Línea y del Registro de Agendas Oficiales.</div>
+        <div class="info-section info-note yellow"><strong>Importante:</strong> no todo ingreso constituye una visita registrable. La directiva contempla excepciones, por ejemplo, determinados servicios de apoyo, trámites regulares en espacios de atención al público, menores de edad y otros supuestos específicos. Ante una duda operativa, consulta a la UFII.</div>
 
         <div class="model-actions">
             <a class="back-button" href="?" target="_self">← Volver al inicio</a>
@@ -1232,7 +1259,7 @@ elif modulo_actual == "guias":
         "✅",
         "Checklists y Guías",
         "Herramientas de consulta rápida para verificar acciones preventivas antes de continuar con un trámite o solicitar orientación.",
-        """
+        f"""
         <div class="info-section">
             <h3>Elige la guía que necesitas</h3>
             <p class="info-lead">Estas ayudas resumen verificaciones básicas. Puedes abrir el módulo relacionado para revisar la explicación y las fuentes oficiales.</p>
@@ -1240,7 +1267,7 @@ elif modulo_actual == "guias":
                 <a class="guide-link" href="?modulo=etica" target="_self"><span>⚖️</span><strong>Antes de una decisión ética</strong><small>Identifica intereses, beneficios, presiones, recursos públicos y posibles riesgos.</small></a>
                 <a class="guide-link" href="?modulo=declaraciones" target="_self"><span>📄</span><strong>Antes de presentar una declaración</strong><small>Confirma obligación, tipo, momento, sistema oficial y constancia de presentación.</small></a>
                 <a class="guide-link" href="?modulo=denuncias" target="_self"><span>📣</span><strong>Antes de presentar una denuncia</strong><small>Identifica entidad, fecha, lugar, descripción, modalidad y código de seguimiento.</small></a>
-                <a class="guide-link" href="?modulo=rvl" target="_self"><span>🪪</span><strong>Antes de cerrar una visita</strong><small>Verifica identidad, destino, motivo, información completa y registro de salida.</small></a>
+                <a class="guide-link" href="?modulo=rvl" target="_self"><span class="guide-rvl-icon">{icono_rvl_html}</span><strong>Antes de cerrar una visita</strong><small>Verifica identidad, destino, motivo, información completa y registro de salida.</small></a>
                 <a class="guide-link" href="?modulo=derivacion" target="_self"><span>💼</span><strong>Antes de derivar a la UFII</strong><small>Define el tema, la orientación requerida y el canal correcto sin exponer datos sensibles.</small></a>
                 <a class="guide-link" href="?modulo=modelo" target="_self"><span>🛡️</span><strong>Modelo de Integridad</strong><small>Consulta sus nueve componentes y las etapas de implementación.</small></a>
             </div>

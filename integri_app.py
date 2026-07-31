@@ -1,4 +1,4 @@
-# VERSION INTEGRI: RVL_DIRECTIVA_003_2026_ICONO_VISITANTE - 31/07/2026
+# VERSION INTEGRI: RVL_ICONO_HTML_CSS_COMPATIBLE - 31/07/2026
 import base64
 import html
 from pathlib import Path
@@ -29,16 +29,12 @@ robot_html = (
     else '<div class="robot-fallback">🤖</div>'
 )
 
-# Icono vectorial propio para RVL. Evita depender de emojis que Windows o el
-# navegador pueden mostrar como un cuadro vacío.
+# Icono propio para RVL construido con HTML y CSS. Streamlit puede filtrar los
+# elementos SVG incrustados; esta versión no depende de SVG, emojis ni archivos.
 icono_rvl_html = """
-<svg class="rvl-icon-svg" viewBox="0 0 72 72" role="img" aria-label="Credencial de visitante">
-    <rect x="5" y="12" width="62" height="50" rx="7" fill="#eaf4ff" stroke="#0755a8" stroke-width="3.5"/>
-    <rect x="26" y="6" width="20" height="10" rx="4" fill="#063b82"/>
-    <circle cx="24" cy="31" r="8" fill="#0755a8"/>
-    <path d="M12 52c1-9 6.5-14 12-14s11 5 12 14" fill="#168fe4"/>
-    <path d="M43 27h16M43 36h16M43 45h11" fill="none" stroke="#0755a8" stroke-width="3.5" stroke-linecap="round"/>
-</svg>
+<span class="rvl-badge" role="img" aria-label="Credencial de visitante">
+    <span class="rvl-person"></span><span class="rvl-lines"></span>
+</span>
 """
 
 
@@ -500,9 +496,62 @@ html, body, [class*="css"] {
 }
 .menu-card:hover { transform:translateY(-3px); border-color:#7eaddf; box-shadow:0 9px 17px rgba(18,56,116,.17); }
 .menu-icon { font-size:3.7rem; line-height:1; filter:drop-shadow(0 2px 1px rgba(10,55,115,.16)); }
-.rvl-icon-svg { display:block; width:64px; height:64px; margin:auto; }
-.menu-icon.rvl-menu-icon { display:block; }
-.menu-icon.rvl-menu-icon .rvl-icon-svg { width:68px; height:68px; }
+.menu-icon.rvl-menu-icon { display:block; padding-top:.45rem; }
+.rvl-badge {
+    position:relative;
+    display:inline-block;
+    width:66px;
+    height:52px;
+    background:#eaf4ff;
+    border:4px solid #0755a8;
+    border-radius:8px;
+    box-shadow:0 3px 0 rgba(6,59,130,.16);
+}
+.rvl-badge:before {
+    content:"";
+    position:absolute;
+    left:20px;
+    top:-11px;
+    width:20px;
+    height:10px;
+    background:#063b82;
+    border-radius:4px 4px 2px 2px;
+}
+.rvl-person {
+    position:absolute;
+    left:7px;
+    top:9px;
+    width:25px;
+    height:33px;
+}
+.rvl-person:before {
+    content:"";
+    position:absolute;
+    left:7px;
+    top:0;
+    width:12px;
+    height:12px;
+    background:#0755a8;
+    border-radius:50%;
+}
+.rvl-person:after {
+    content:"";
+    position:absolute;
+    left:1px;
+    bottom:0;
+    width:24px;
+    height:17px;
+    background:#168fe4;
+    border-radius:14px 14px 3px 3px;
+}
+.rvl-lines {
+    position:absolute;
+    right:7px;
+    top:11px;
+    width:20px;
+    height:27px;
+    background:repeating-linear-gradient(to bottom,#0755a8 0 3px,transparent 3px 9px);
+}
 .menu-card strong { font:700 clamp(1rem,2.2vw,1.35rem)/1.12 "Roboto Condensed",Arial,sans-serif; }
 
 .metrics-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; }
@@ -662,7 +711,7 @@ html, body, [class*="css"] {
     border-radius:14px;
 }
 .info-intro .info-icon { display:grid; place-items:center; width:76px; height:76px; font-size:3.1rem; background:#fff; border-radius:50%; }
-.info-intro .info-icon .rvl-icon-svg { width:62px; height:62px; }
+.info-intro .info-icon .rvl-badge { transform:scale(.82); }
 .info-intro h2 { margin:0 0 .35rem; font:800 clamp(1.7rem,4vw,2.6rem)/1.05 Roboto,Arial,sans-serif; }
 .info-intro p { max-width:900px; margin:0; font:500 1rem/1.45 Roboto,Arial,sans-serif; }
 .info-section { margin-top:1.4rem; }
@@ -690,7 +739,7 @@ html, body, [class*="css"] {
 .guide-link { display:block; min-height:155px; padding:1rem; color:#092b66 !important; background:#fff; border:1px solid #c6daf3; border-radius:12px; text-decoration:none !important; box-shadow:0 4px 10px rgba(18,61,121,.08); transition:transform .16s ease, box-shadow .16s ease; }
 .guide-link:hover { transform:translateY(-2px); box-shadow:0 8px 15px rgba(18,61,121,.14); }
 .guide-link span { display:block; margin-bottom:.55rem; font-size:2rem; }
-.guide-link .guide-rvl-icon .rvl-icon-svg { width:43px; height:43px; margin:0; }
+.guide-link .guide-rvl-icon .rvl-badge { transform:scale(.68); transform-origin:left top; margin-bottom:-13px; }
 .guide-link strong { display:block; margin-bottom:.35rem; font:800 .98rem/1.2 Roboto,Arial,sans-serif; }
 .guide-link small { color:#4d6586; font:500 .82rem/1.4 Roboto,Arial,sans-serif; }
 .contact-box { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }

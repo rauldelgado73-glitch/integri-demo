@@ -1,4 +1,4 @@
-# VERSION INTEGRI: PANEL_INTEGRADO_INTERACTIVO - 31/07/2026
+# VERSION INTEGRI: PANEL_INTERACTIVO_VISTA_ENFOCADA - 31/07/2026
 import base64
 import html
 from pathlib import Path
@@ -597,6 +597,23 @@ html, body, [class*="css"] {
 .demo-flow { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; }
 .demo-flow-step { position:relative; min-height:105px; padding:.8rem; color:#24476f; background:#edf5ff; border:1px solid #c2d9f2; border-radius:10px; font:600 .8rem/1.35 Roboto,Arial,sans-serif; }
 .demo-flow-step b { display:grid; place-items:center; width:27px; height:27px; margin-bottom:.45rem; color:#fff; background:#0755a8; border-radius:50%; }
+.focus-panel { max-width:1000px; margin:1.5rem auto; padding:1.35rem; }
+.focus-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:1rem;
+    padding:1rem 1.15rem;
+    color:#fff;
+    background:linear-gradient(135deg,#073b82,#0873c7);
+    border-radius:12px;
+}
+.focus-header strong { display:block; font:800 clamp(1.25rem,3vw,1.8rem)/1.1 Roboto,Arial,sans-serif; }
+.focus-header small { display:block; margin-top:.25rem; color:#dceeff; font:600 .78rem Roboto,Arial,sans-serif; }
+.focus-badge { padding:.4rem .7rem; color:#704f00; background:#fff0b8; border-radius:999px; white-space:nowrap; font:800 .72rem Roboto,Arial,sans-serif; }
+.focus-panel .panel-detail { margin-top:1rem; }
+.focus-actions { display:flex; justify-content:center; margin-top:1rem; }
+.focus-actions .back-button { margin-top:0; }
 
 .footer-nav {
     display:grid;
@@ -956,6 +973,7 @@ div.stButton > button {
     .demo-flow { grid-template-columns:repeat(2,1fr); }
     .source-grid { grid-template-columns:1fr; }
     .admin-header { align-items:flex-start; }
+    .focus-header { align-items:flex-start; }
     .chat-message { max-width:94%; }
     .chat-app { min-height:560px; }
     .chat-window { min-height:350px; padding:.85rem; }
@@ -990,6 +1008,7 @@ div.stButton > button {
     .admin-kpis { grid-template-columns:1fr 1fr; }
     .topic-row { grid-template-columns:110px 1fr 35px; }
     .demo-flow { grid-template-columns:1fr; }
+    .focus-header { flex-direction:column; }
     .situation-grid, .decision-route { grid-template-columns:1fr; }
     .info-grid.cols-2, .info-grid.cols-3, .info-grid.cols-4, .process-grid, .contact-box { grid-template-columns:1fr; }
 }
@@ -1071,6 +1090,31 @@ def detalle_panel_demostrativo(vista: str) -> str:
             <div class="demo-flow-step"><b>4</b>El panel consolida cifras, temas y estados sin exhibir datos personales.</div>
         </div>
     </div>
+    """
+
+
+def pagina_panel_enfocado(vista: str) -> str:
+    """Muestra solamente el reporte seleccionado, sin repetir la portada."""
+    titulos = {
+        "consultas": "Consultas recibidas",
+        "orientaciones": "Orientaciones brindadas",
+        "alertas": "Alertas preventivas",
+        "derivaciones": "Derivaciones a la UFII",
+    }
+    titulo = titulos.get(vista, "Panel de seguimiento")
+    detalle = detalle_panel_demostrativo(vista)
+    return f"""
+    <main class="integri-shell">
+        <section class="focus-panel panel">
+            <header class="focus-header">
+                <div><strong>INTEGRI · {titulo}</strong><small>Vista demostrativa del seguimiento institucional</small></div>
+                <span class="focus-badge">DATOS SIMULADOS</span>
+            </header>
+            {detalle}
+            <p class="demo-disclaimer"><strong>Información ficticia:</strong> los códigos, fechas, cifras y situaciones se utilizan exclusivamente para mostrar cómo funcionaría este reporte. No corresponden a casos ni resultados reales de la UFII.</p>
+            <div class="focus-actions"><a class="back-button" href="?" target="_self">← Volver al panel principal</a></div>
+        </section>
+    </main>
     """
 
 
@@ -1677,6 +1721,10 @@ elif modulo_actual == "derivacion":
     )
 if modulo_actual in modulos:
     st.html(pagina)
+    st.stop()
+
+if panel_vista_inicio in {"consultas", "orientaciones", "alertas", "derivaciones"}:
+    st.html(pagina_panel_enfocado(panel_vista_inicio))
     st.stop()
 
 cabecera_inicio = pagina_inicio.split('<section class="hero panel">', 1)[0] + "</main>"

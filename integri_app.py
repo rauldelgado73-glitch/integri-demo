@@ -592,13 +592,60 @@ html, body, [class*="css"] {
 
 .footer-nav {
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr;
     gap:2rem;
     padding: .65rem 8% 0;
     border-top:2px solid #d2e0f4;
     font:700 1rem/1.2 Roboto,Arial,sans-serif;
 }
-.footer-nav div { text-align:center; }
+.footer-nav div, .footer-nav a { color:#0a2459; text-align:center; text-decoration:none; }
+.footer-nav a:hover { color:#0755a8; text-decoration:underline; }
+
+/* Panel administrativo demostrativo */
+.admin-page { padding:1.45rem; }
+.admin-header {
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    align-items:center;
+    padding:1.15rem 1.3rem;
+    color:#fff;
+    background:linear-gradient(135deg,#073b82,#0873c7);
+    border-radius:14px;
+}
+.admin-header h2 { margin:0 0 .2rem; font:800 clamp(1.45rem,3vw,2.2rem)/1.1 Roboto,Arial,sans-serif; }
+.admin-header p { margin:0; color:#dceeff; font:500 .9rem/1.35 Roboto,Arial,sans-serif; }
+.admin-lock { display:grid; place-items:center; min-width:58px; height:58px; background:#fff; border-radius:50%; font-size:2rem; }
+.admin-demo-badge { padding:.45rem .75rem; color:#714f00; background:#fff0b8; border-radius:999px; white-space:nowrap; font:800 .75rem Roboto,Arial,sans-serif; }
+.admin-tabs { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0; }
+.admin-tabs a { padding:.65rem .9rem; color:#0755a8; background:#edf5ff; border:1px solid #bfd6f1; border-radius:9px; text-decoration:none; font:700 .84rem Roboto,Arial,sans-serif; }
+.admin-tabs a.active, .admin-tabs a:hover { color:#fff; background:#0755a8; }
+.admin-kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem; }
+.admin-kpi { min-height:145px; padding:1rem; color:#0a2459 !important; background:#fff; border:1px solid #c5d9f2; border-radius:12px; text-decoration:none !important; box-shadow:0 4px 11px rgba(18,61,121,.10); transition:.16s ease; }
+.admin-kpi:hover { transform:translateY(-3px); border-color:#6fa5dc; box-shadow:0 8px 16px rgba(18,61,121,.16); }
+.admin-kpi span { display:block; font-size:2rem; }
+.admin-kpi strong { display:block; margin:.45rem 0 .35rem; font:800 1rem/1.2 Roboto,Arial,sans-serif; }
+.admin-kpi b { display:block; color:#0755a8; font:900 1.9rem/1 Roboto,Arial,sans-serif; }
+.admin-kpi small { display:block; margin-top:.35rem; color:#617592; font:600 .75rem/1.3 Roboto,Arial,sans-serif; }
+.admin-section { margin-top:1.15rem; padding:1rem; background:#fff; border:1px solid #c9dbf2; border-radius:12px; }
+.admin-section h3 { margin:0 0 .75rem; color:#092b66; font:800 1.2rem Roboto,Arial,sans-serif; }
+.admin-table-wrap { overflow-x:auto; }
+.admin-table { width:100%; border-collapse:collapse; font:500 .8rem/1.35 Roboto,Arial,sans-serif; }
+.admin-table th { padding:.65rem; color:#fff; background:#0755a8; text-align:left; white-space:nowrap; }
+.admin-table td { padding:.65rem; color:#29476e; border-bottom:1px solid #dce7f5; }
+.admin-table tr:nth-child(even) td { background:#f5f9ff; }
+.status-pill { display:inline-block; padding:.25rem .55rem; border-radius:999px; font-weight:800; font-size:.7rem; }
+.status-pill.ok { color:#17613f; background:#e6f7ee; }
+.status-pill.wait { color:#795400; background:#fff2c9; }
+.status-pill.sent { color:#174875; background:#e5f2ff; }
+.topic-bars { display:grid; gap:.65rem; }
+.topic-row { display:grid; grid-template-columns:165px 1fr 42px; gap:.65rem; align-items:center; color:#29476e; font:700 .8rem Roboto,Arial,sans-serif; }
+.topic-track { height:13px; overflow:hidden; background:#e7effa; border-radius:999px; }
+.topic-fill { height:100%; background:linear-gradient(90deg,#0870c0,#20a0e8); border-radius:999px; }
+.source-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; }
+.source-card { padding:1rem; background:#f5f9ff; border:1px solid #c9ddf4; border-radius:10px; }
+.source-card strong { display:block; margin-bottom:.35rem; color:#092b66; }
+.source-card p { margin:0; color:#4b6486; font:500 .8rem/1.4 Roboto,Arial,sans-serif; }
 
 .module-page {
     min-height: 520px;
@@ -897,6 +944,9 @@ div.stButton > button {
     .menu-card { min-height:145px; }
     .menu-icon { font-size:2.9rem; }
     .metrics-grid { grid-template-columns:repeat(2,1fr); }
+    .admin-kpis { grid-template-columns:repeat(2,1fr); }
+    .source-grid { grid-template-columns:1fr; }
+    .admin-header { align-items:flex-start; }
     .chat-message { max-width:94%; }
     .chat-app { min-height:560px; }
     .chat-window { min-height:350px; padding:.85rem; }
@@ -927,7 +977,9 @@ div.stButton > button {
     .menu-card { min-height:128px; padding:.75rem .3rem; }
     .menu-card strong { font-size:.92rem; }
     .metric { min-height:155px; }
-    .footer-nav { padding:.6rem 0 0; gap:.5rem; }
+    .footer-nav { grid-template-columns:1fr; padding:.6rem 0 0; gap:.8rem; }
+    .admin-kpis { grid-template-columns:1fr 1fr; }
+    .topic-row { grid-template-columns:110px 1fr 35px; }
     .situation-grid, .decision-route { grid-template-columns:1fr; }
     .info-grid.cols-2, .info-grid.cols-3, .info-grid.cols-4, .process-grid, .contact-box { grid-template-columns:1fr; }
 }
@@ -986,32 +1038,10 @@ pagina = f"""
         </div>
     </section>
 
-    <section class="section panel">
-        <h2 class="section-title">Panel de funcionamiento</h2>
-        <p class="demo-caption">Ejemplo de cómo INTEGRI podría presentar el seguimiento mensual de las orientaciones.</p>
-        <div class="metrics-grid">
-            <div class="metric">
-                <span class="metric-icon">💬</span><div class="metric-title">Consultas recibidas</div><div class="metric-rule"></div>
-                <div class="metric-value">42 <small>durante el mes</small></div>
-            </div>
-            <div class="metric">
-                <span class="metric-icon">✅</span><div class="metric-title">Orientaciones brindadas</div><div class="metric-rule"></div>
-                <div class="metric-value">36 <small>respuestas registradas</small></div>
-            </div>
-            <div class="metric warn">
-                <span class="metric-icon">⚠️</span><div class="metric-title">Alertas preventivas identificadas</div><div class="metric-rule"></div>
-                <div class="metric-value">7 <small>situaciones orientadas</small></div>
-            </div>
-            <div class="metric folder">
-                <span class="metric-icon">🗂️</span><div class="metric-title">Derivaciones a UFII</div><div class="metric-rule"></div>
-                <div class="metric-value">6 <small>solicitudes derivadas</small></div>
-            </div>
-        </div>
-        <p class="demo-disclaimer"><strong>Datos simulados para la maqueta:</strong> estas cifras son ficticias y se muestran únicamente para visualizar cómo funcionaría el panel. No corresponden a estadísticas ni resultados oficiales de la UFII.</p>
-    </section>
-
     <footer class="footer-nav">
-        <div>💬 &nbsp; Ayuda</div><div>💼 &nbsp; Seguimiento y Reportes</div>
+        <div>💬 &nbsp; Ayuda</div>
+        <div>🔎 &nbsp; Seguimiento de consulta</div>
+        <a href="?modulo=panel_admin&vista=resumen" target="_self">🔐 &nbsp; Acceso administrativo (demo)</a>
     </footer>
 </main>
 """
@@ -1026,6 +1056,7 @@ modulos = {
     "rvl": (icono_rvl_html, "Registro de Visitas RVL", "Espacio de orientación operativa sobre el Registro de Visitas en Línea."),
     "guias": ("✅", "Checklists y Guías", "Repositorio de materiales preventivos y herramientas de consulta rápida."),
     "derivacion": ("💼", "Derivar a UFII", "Espacio para identificar cuándo corresponde solicitar orientación directa a la UFII."),
+    "panel_admin": ("🔐", "Panel administrativo", "Vista demostrativa de seguimiento y control para usuarios autorizados."),
 }
 
 
@@ -1053,9 +1084,150 @@ def pagina_modulo_info(simbolo: str, titulo: str, descripcion: str, contenido: s
     """
 
 
-modulo_actual = st.query_params.get("modulo", "")
+def pagina_panel_control(vista: str) -> str:
+    """Construye un panel administrativo interactivo con datos ficticios."""
+    vistas_validas = {"resumen", "consultas", "alertas", "derivaciones", "fuentes"}
+    vista = vista if vista in vistas_validas else "resumen"
 
-if modulo_actual == "modelo":
+    if vista == "consultas":
+        detalle = """
+        <section class="admin-section">
+            <h3>Consultas registradas - ejemplo mensual</h3>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Código</th><th>Fecha</th><th>Canal</th><th>Tema clasificado</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>INT-2026-001</td><td>03/07/2026</td><td>Chat web</td><td>Conflicto de intereses</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                    <tr><td>INT-2026-002</td><td>05/07/2026</td><td>Chat web</td><td>Declaración jurada</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                    <tr><td>INT-2026-003</td><td>08/07/2026</td><td>Correo</td><td>Modelo de Integridad</td><td><span class="status-pill sent">Derivada</span></td></tr>
+                    <tr><td>INT-2026-004</td><td>11/07/2026</td><td>Chat web</td><td>Registro de Visitas</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                    <tr><td>INT-2026-005</td><td>15/07/2026</td><td>Anexo</td><td>Canal de denuncias</td><td><span class="status-pill wait">En seguimiento</span></td></tr>
+                    <tr><td>INT-2026-006</td><td>19/07/2026</td><td>Chat web</td><td>Regalos o ventajas</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                </tbody>
+            </table></div>
+        </section>
+        """
+    elif vista == "alertas":
+        detalle = """
+        <section class="admin-section">
+            <h3>Alertas preventivas identificadas - ejemplos</h3>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Alerta</th><th>Situación general</th><th>Acción preventiva</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>AL-001</td><td>Posible conflicto de intereses</td><td>Orientación previa a la decisión</td><td><span class="status-pill ok">Atendida</span></td></tr>
+                    <tr><td>AL-002</td><td>Ofrecimiento de obsequio</td><td>Recordatorio de prohibiciones y canal interno</td><td><span class="status-pill ok">Atendida</span></td></tr>
+                    <tr><td>AL-003</td><td>Registro RVL incompleto</td><td>Verificación de datos y registro de salida</td><td><span class="status-pill wait">En seguimiento</span></td></tr>
+                    <tr><td>AL-004</td><td>Consulta sobre información reservada</td><td>Derivación al responsable competente</td><td><span class="status-pill sent">Derivada</span></td></tr>
+                </tbody>
+            </table></div>
+        </section>
+        """
+    elif vista == "derivaciones":
+        detalle = """
+        <section class="admin-section">
+            <h3>Seguimiento de derivaciones a la UFII - ejemplos</h3>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Código</th><th>Tema</th><th>Fecha de derivación</th><th>Responsable</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>DER-001</td><td>Asistencia sobre componente del Modelo</td><td>08/07/2026</td><td>UFII</td><td><span class="status-pill ok">Cerrada</span></td></tr>
+                    <tr><td>DER-002</td><td>Orientación ética especializada</td><td>12/07/2026</td><td>UFII</td><td><span class="status-pill wait">En revisión</span></td></tr>
+                    <tr><td>DER-003</td><td>Incidencia operativa RVL</td><td>18/07/2026</td><td>UFII / RVL</td><td><span class="status-pill sent">Derivada</span></td></tr>
+                    <tr><td>DER-004</td><td>Consulta sobre canal competente</td><td>24/07/2026</td><td>UFII</td><td><span class="status-pill ok">Cerrada</span></td></tr>
+                </tbody>
+            </table></div>
+        </section>
+        """
+    elif vista == "fuentes":
+        detalle = """
+        <section class="admin-section">
+            <h3>¿De dónde saldrían los datos reales?</h3>
+            <div class="source-grid">
+                <article class="source-card"><strong>1. Chat y formularios INTEGRI</strong><p>Generarían código, fecha, canal, tema consultado y respuesta brindada, sin exponer datos sensibles en el tablero.</p></article>
+                <article class="source-card"><strong>2. Registro de atención UFII</strong><p>Incorporaría responsable, estado, fecha de derivación, acciones efectuadas y fecha de cierre.</p></article>
+                <article class="source-card"><strong>3. Archivos institucionales</strong><p>Podrían integrarse mediante Excel/CSV, una base de datos autorizada o conexiones con sistemas institucionales.</p></article>
+            </div>
+        </section>
+        <section class="admin-section">
+            <h3>Estructura propuesta para la base de seguimiento</h3>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Campo</th><th>Ejemplo ficticio</th><th>Uso en el panel</th></tr></thead>
+                <tbody>
+                    <tr><td>codigo_consulta</td><td>INT-2026-001</td><td>Trazabilidad sin mostrar identidad</td></tr>
+                    <tr><td>fecha_hora</td><td>03/07/2026 10:25</td><td>Seguimiento por periodo</td></tr>
+                    <tr><td>canal</td><td>Chat web</td><td>Distribución por canal</td></tr>
+                    <tr><td>tema</td><td>Conflicto de intereses</td><td>Demanda temática</td></tr>
+                    <tr><td>estado</td><td>Orientada</td><td>Seguimiento de atención</td></tr>
+                    <tr><td>derivacion</td><td>No / Sí</td><td>Control de casos derivados</td></tr>
+                </tbody>
+            </table></div>
+        </section>
+        """
+    else:
+        detalle = """
+        <section class="admin-section">
+            <h3>Temas consultados durante el mes de ejemplo</h3>
+            <div class="topic-bars">
+                <div class="topic-row"><span>Ética pública</span><div class="topic-track"><div class="topic-fill" style="width:76%"></div></div><b>16</b></div>
+                <div class="topic-row"><span>Declaraciones juradas</span><div class="topic-track"><div class="topic-fill" style="width:52%"></div></div><b>11</b></div>
+                <div class="topic-row"><span>Registro de Visitas</span><div class="topic-track"><div class="topic-fill" style="width:38%"></div></div><b>8</b></div>
+                <div class="topic-row"><span>Canal de denuncias</span><div class="topic-track"><div class="topic-fill" style="width:33%"></div></div><b>7</b></div>
+            </div>
+        </section>
+        <section class="admin-section">
+            <h3>Actividad reciente - muestra</h3>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Código</th><th>Canal</th><th>Tema</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>INT-2026-006</td><td>Chat web</td><td>Regalos o ventajas</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                    <tr><td>INT-2026-005</td><td>Anexo</td><td>Canal de denuncias</td><td><span class="status-pill wait">En seguimiento</span></td></tr>
+                    <tr><td>INT-2026-004</td><td>Chat web</td><td>Registro de Visitas</td><td><span class="status-pill ok">Orientada</span></td></tr>
+                </tbody>
+            </table></div>
+        </section>
+        """
+
+    tabs = "".join(
+        f'<a class="{"active" if vista == clave else ""}" href="?modulo=panel_admin&vista={clave}" target="_self">{etiqueta}</a>'
+        for clave, etiqueta in (
+            ("resumen", "Resumen"),
+            ("consultas", "Consultas"),
+            ("alertas", "Alertas"),
+            ("derivaciones", "Derivaciones"),
+            ("fuentes", "Origen de datos"),
+        )
+    )
+
+    return f"""
+    <main class="integri-shell">
+        <nav class="topic-bar" aria-label="Áreas de orientación">
+            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+        </nav>
+        <section class="admin-page panel">
+            <header class="admin-header">
+                <div class="admin-lock">🔐</div>
+                <div><h2>Panel de control UFII</h2><p>Seguimiento administrativo de orientaciones, alertas y derivaciones.</p></div>
+                <div class="admin-demo-badge">MAQUETA INTERACTIVA</div>
+            </header>
+            <nav class="admin-tabs">{tabs}</nav>
+            <div class="admin-kpis">
+                <a class="admin-kpi" href="?modulo=panel_admin&vista=consultas" target="_self"><span>💬</span><strong>Consultas recibidas</strong><b>42</b><small>Abrir registro de ejemplo →</small></a>
+                <a class="admin-kpi" href="?modulo=panel_admin&vista=consultas" target="_self"><span>✅</span><strong>Orientaciones brindadas</strong><b>36</b><small>Revisar estados →</small></a>
+                <a class="admin-kpi" href="?modulo=panel_admin&vista=alertas" target="_self"><span>⚠️</span><strong>Alertas preventivas</strong><b>7</b><small>Ver situaciones →</small></a>
+                <a class="admin-kpi" href="?modulo=panel_admin&vista=derivaciones" target="_self"><span>🗂️</span><strong>Derivaciones a UFII</strong><b>6</b><small>Ver seguimiento →</small></a>
+            </div>
+            {detalle}
+            <p class="demo-disclaimer"><strong>Datos completamente simulados:</strong> esta pantalla muestra cómo podría funcionar el panel administrativo. No contiene carga laboral, casos ni resultados reales de la UFII. En producción requerirá autenticación y permisos.</p>
+            <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio público</a></div>
+        </section>
+    </main>
+    """
+
+
+modulo_actual = st.query_params.get("modulo", "")
+vista_panel = st.query_params.get("vista", "resumen")
+
+if modulo_actual == "panel_admin":
+    pagina = pagina_panel_control(vista_panel)
+elif modulo_actual == "modelo":
     pagina = """
     <main class="integri-shell">
         <header class="brand">
@@ -1396,6 +1568,22 @@ elif modulo_actual == "derivacion":
     )
 if modulo_actual in modulos:
     st.html(pagina)
+    if modulo_actual == "panel_admin":
+        csv_demostrativo = """codigo,fecha,canal,tema,estado,derivacion
+INT-2026-001,03/07/2026,Chat web,Conflicto de intereses,Orientada,No
+INT-2026-002,05/07/2026,Chat web,Declaración jurada,Orientada,No
+INT-2026-003,08/07/2026,Correo,Modelo de Integridad,Derivada,Sí
+INT-2026-004,11/07/2026,Chat web,Registro de Visitas,Orientada,No
+INT-2026-005,15/07/2026,Anexo,Canal de denuncias,En seguimiento,Sí
+"""
+        st.download_button(
+            "⬇️ Descargar base CSV de ejemplo",
+            data=csv_demostrativo.encode("utf-8-sig"),
+            file_name="INTEGRI_seguimiento_datos_simulados.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
+        st.caption("🔐 En la versión real, este panel y sus descargas estarían disponibles solamente para usuarios autorizados.")
     st.stop()
 
 cabecera_inicio = pagina_inicio.split('<section class="hero panel">', 1)[0] + "</main>"

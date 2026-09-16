@@ -1,4 +1,4 @@
-# VERSION INTEGRID-LN: PRESENTACION_MODELO_Y_NEUTRALIDAD - 16/09/2026
+# VERSION INTEGRID-LN: CABECERA_SIN_MENU_DUPLICADO - 16/09/2026
 import base64
 import html
 from pathlib import Path
@@ -219,16 +219,11 @@ html, body, [class*="css"] {
 }
 
 .topic-bar {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:.35rem;
     margin: .25rem 0 1.55rem;
-    padding: .78rem 1rem;
+    padding: .88rem 1rem;
     color: white;
     text-align: center;
-    font-size: clamp(.84rem, 1.55vw, 1.08rem);
+    font-size: clamp(1.12rem, 2.3vw, 1.55rem);
     font-weight: 700;
     background: linear-gradient(135deg, #073b85, #0664b7 58%, #063c87);
     border: 1px solid #042f72;
@@ -236,9 +231,6 @@ html, body, [class*="css"] {
     box-shadow: 0 7px 14px rgba(1,52,125,.18), inset 0 1px rgba(255,255,255,.25);
 }
 
-.topic-bar a { padding:.35rem .55rem; color:#fff !important; text-decoration:none !important; border-radius:6px; white-space:nowrap; }
-.topic-bar a:hover, .topic-bar a:focus-visible { background:rgba(255,255,255,.20); outline:2px solid #fff; }
-.topic-bar a + a { border-left:1px solid rgba(255,255,255,.65); }
 
 .panel {
     background: rgba(255,255,255,.6);
@@ -1003,9 +995,7 @@ div.stButton > button {
 @media (max-width: 760px) {
     .block-container { padding: 1.2rem .75rem 1.6rem !important; }
     .brand { padding-bottom:.8rem; }
-    .topic-bar { line-height:1.8; padding:.55rem .3rem; }
-    .topic-bar a { padding:.25rem .4rem; white-space:normal; }
-    .topic-bar a + a { border-left:0; }
+    .topic-bar { line-height:1.25; padding:.7rem .5rem; }
     .hero { grid-template-columns:1fr; min-height:500px; }
     .mascot-wrap { position:absolute; inset:auto auto 0 0; width:43%; height:250px; min-height:0; }
     .robot { left:-.4rem; width:100%; }
@@ -1202,9 +1192,7 @@ pagina = f"""
         <p>Unidad Funcional de Integridad Institucional (UFII)</p>
     </header>
 
-    <nav class="topic-bar" aria-label="Rutas principales">
-        <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
-    </nav>
+    <div class="topic-bar" role="heading" aria-level="1">INTEGRID-LN · Plataforma de Integridad Institucional</div>
 
     <section class="hero panel">
         <div class="mascot-wrap">{robot_html}</div>
@@ -1397,9 +1385,7 @@ def pagina_modulo_info(simbolo: str, titulo: str, descripcion: str, contenido: s
             <h2>Asistente de Integridad Institucional</h2>
             <p>Unidad Funcional de Integridad Institucional (UFII)</p>
         </header>
-        <nav class="topic-bar" aria-label="Rutas principales">
-            <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
-        </nav>
+        <div class="topic-bar" role="heading" aria-level="1">INTEGRID-LN · Plataforma de Integridad Institucional</div>
         <section class="info-page panel">
             <div class="info-intro">
                 <div class="info-icon">{simbolo}</div>
@@ -1429,9 +1415,7 @@ if modulo_actual == "modelo":
             <h2>Asistente de Integridad Institucional</h2>
             <p>Unidad Funcional de Integridad Institucional (UFII)</p>
         </header>
-        <nav class="topic-bar" aria-label="Áreas de orientación">
-            <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
-        </nav>
+        <div class="topic-bar" role="heading" aria-level="1">INTEGRID-LN · Plataforma de Integridad Institucional</div>
 
         <section class="model-page panel">
             <div class="model-intro">
@@ -1499,9 +1483,7 @@ elif modulo_actual == "etica":
             <h2>Asistente de Integridad Institucional</h2>
             <p>Unidad Funcional de Integridad Institucional (UFII)</p>
         </header>
-        <nav class="topic-bar" aria-label="Áreas de orientación">
-            <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
-        </nav>
+        <div class="topic-bar" role="heading" aria-level="1">INTEGRID-LN · Plataforma de Integridad Institucional</div>
 
         <section class="ethics-page panel">
             <div class="ethics-intro">

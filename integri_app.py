@@ -1,4 +1,4 @@
-# VERSION INTEGRID-LN: REBRANDING_PARA_DIRIS_LIMA_NORTE - 15/09/2026
+# VERSION INTEGRID-LN: PRESENTACION_MODELO_Y_NEUTRALIDAD - 16/09/2026
 import base64
 import html
 from pathlib import Path
@@ -47,10 +47,30 @@ def respuesta_guiada(texto: str) -> str:
             "Por seguridad, no compartas datos personales, nombres de involucrados ni evidencias en este chat. "
             "Puedo brindarte orientación general o indicarte el canal institucional correspondiente."
         )
-    if any(p in consulta for p in ("hola", "buenos días", "buenos dias", "buenas tardes", "ayuda", "qué puedes", "que puedes")):
+    if consulta in ("hola", "buenos días", "buenos dias", "buenas tardes", "ayuda", "qué puedes hacer", "que puedes hacer"):
         return (
-            "¡Hola! Soy INTEGRID-LN. Puedo orientarte sobre ética pública, Modelo de Integridad, "
-            "declaraciones juradas, canal de denuncias, Registro de Visitas RVL, checklists y derivación a la UFII."
+            "¡Hola! Soy INTEGRID-LN. Puedo explicarte los nueve componentes del Modelo de Integridad, ética pública, "
+            "declaraciones juradas, denuncias, transparencia y PTE, neutralidad electoral, visitas y agendas, guías y derivación a la UFII."
+        )
+    if any(p in consulta for p in ("portal de transparencia", "transparencia estándar", "transparencia estandar", "pte", "acceso a la información", "acceso a la informacion", "datos abiertos", "rendición de cuentas", "rendicion de cuentas")):
+        return (
+            "El Portal de Transparencia Estándar de DIRIS Lima Norte reúne información institucional pública. "
+            "La tarea 4.1 de la Directiva N.° 001-2026-PCM/SIP contempla verificar su actualización. "
+            "Abre «Transparencia y PTE» para acceder al portal oficial y conocer la ruta de verificación; "
+            "la UFII coordina el seguimiento, mientras la publicación corresponde al funcionario responsable del PTE."
+        )
+    if any(p in consulta for p in ("neutralidad", "integridad electoral", "proselitismo", "propaganda electoral", "publicidad estatal", "campaña electoral", "campana electoral")):
+        return (
+            "Durante el proceso electoral, los servidores deben respetar las reglas de neutralidad y publicidad estatal. "
+            "Abre «Neutralidad electoral 2026» para ver ejemplos preventivos y las normas oficiales del JNE y la PCM. "
+            "No escribas nombres, partidos, hechos de un caso ni evidencias en este chat. La entidad debe confirmar "
+            "quién ocupa actualmente el cargo de Oficial de Integridad Institucional y el canal de consulta aplicable."
+        )
+    if any(p in consulta for p in ("alta dirección", "alta direccion", "gestión de riesgos", "gestion de riesgos", "control interno", "auditoría", "auditoria", "capacitación", "capacitacion", "supervisión", "supervision", "programa de integridad", "icp")):
+        return (
+            "Es un tema de uno de los nueve componentes del Modelo de Integridad. En «Modelo de Integridad» "
+            "puedes abrir cada componente para ver acciones, responsables y ejemplos de medios de verificación. "
+            "Los reportes y evidencias institucionales deben ser validados por las unidades competentes."
         )
     if any(p in consulta for p in ("denuncia", "denunciar", "corrupción", "corrupcion", "represalia", "protección", "proteccion")):
         return (
@@ -97,7 +117,7 @@ def respuesta_guiada(texto: str) -> str:
         )
     return (
         "Aún no tengo una respuesta guiada para esa consulta. Puedes reformularla usando uno de estos temas: "
-        "ética, Modelo de Integridad, declaraciones juradas, denuncias, RVL, guías o derivación a la UFII."
+        "ética, Modelo de Integridad, neutralidad electoral, transparencia/PTE, declaraciones juradas, denuncias, RVL, guías o derivación a la UFII."
     )
 
 
@@ -199,11 +219,16 @@ html, body, [class*="css"] {
 }
 
 .topic-bar {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:.35rem;
     margin: .25rem 0 1.55rem;
     padding: .78rem 1rem;
     color: white;
     text-align: center;
-    font-size: clamp(1rem, 2.2vw, 1.35rem);
+    font-size: clamp(.84rem, 1.55vw, 1.08rem);
     font-weight: 700;
     background: linear-gradient(135deg, #073b85, #0664b7 58%, #063c87);
     border: 1px solid #042f72;
@@ -211,8 +236,9 @@ html, body, [class*="css"] {
     box-shadow: 0 7px 14px rgba(1,52,125,.18), inset 0 1px rgba(255,255,255,.25);
 }
 
-.topic-bar span { padding: 0 .8rem; white-space: nowrap; }
-.topic-bar span + span { border-left: 2px solid rgba(255,255,255,.85); }
+.topic-bar a { padding:.35rem .55rem; color:#fff !important; text-decoration:none !important; border-radius:6px; white-space:nowrap; }
+.topic-bar a:hover, .topic-bar a:focus-visible { background:rgba(255,255,255,.20); outline:2px solid #fff; }
+.topic-bar a + a { border-left:1px solid rgba(255,255,255,.65); }
 
 .panel {
     background: rgba(255,255,255,.6);
@@ -495,6 +521,17 @@ html, body, [class*="css"] {
     cursor:pointer;
 }
 .menu-card:hover { transform:translateY(-3px); border-color:#7eaddf; box-shadow:0 9px 17px rgba(18,56,116,.17); }
+.election-link {
+    display:flex; align-items:center; gap:1rem; margin-top:1rem;
+    padding:1rem 1.2rem; color:#08346a !important; text-decoration:none !important;
+    background:#f1f7ff; border:2px solid #79a9db; border-radius:11px;
+    box-shadow:0 5px 10px rgba(18,56,116,.11);
+}
+.election-link:hover, .election-link:focus-visible { border-color:#0753a8; background:#e5f1ff; }
+.election-link .election-icon { font-size:2.1rem; line-height:1; }
+.election-link strong { display:block; font:700 1.25rem Roboto,Arial,sans-serif; }
+.election-link small { display:block; font:400 .95rem Roboto,Arial,sans-serif; margin-top:.22rem; }
+.election-link .election-arrow { margin-left:auto; font-size:1.8rem; font-weight:800; }
 .menu-icon { font-size:3.7rem; line-height:1; filter:drop-shadow(0 2px 1px rgba(10,55,115,.16)); }
 .menu-icon.rvl-menu-icon { display:block; padding-top:.45rem; }
 .rvl-badge {
@@ -591,6 +628,8 @@ html, body, [class*="css"] {
 .metric-text { font:600 .83rem/1.15 Roboto,Arial,sans-serif; }
 .metric-link { color:var(--texto) !important; text-decoration:none !important; transition:transform .16s ease, box-shadow .16s ease; }
 .metric-link:hover { transform:translateY(-3px); border-color:#78a9dc; box-shadow:0 9px 17px rgba(18,56,116,.17); }
+.evidence-entry { display:block; margin:.95rem 0 .2rem; padding:.9rem 1.1rem; color:#0755a8 !important; background:#fff; border:1px solid #a6c6ee; border-radius:10px; text-decoration:none !important; font:800 .92rem/1.35 Roboto,Arial,sans-serif; }
+.evidence-entry:hover { background:#eef6ff; }
 .panel-detail { margin-top:1rem; padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; box-shadow:0 4px 10px rgba(18,61,121,.08); }
 .panel-detail h3 { margin:0 0 .35rem; color:#092b66; font:800 1.15rem/1.2 Roboto,Arial,sans-serif; }
 .panel-detail > p { margin:.2rem 0 .8rem; color:#546c8d; font:500 .84rem/1.4 Roboto,Arial,sans-serif; }
@@ -732,7 +771,18 @@ html, body, [class*="css"] {
 .component-number { display:inline-grid; place-items:center; width:29px; height:29px; margin-bottom:.55rem; color:#fff; background:#0870c0; border-radius:50%; font:800 .85rem Roboto,Arial,sans-serif; }
 .component-card strong { display:block; margin-bottom:.35rem; color:#092b66; font:800 .96rem/1.2 Roboto,Arial,sans-serif; }
 .component-card p { margin:0; color:#405a7d; font:500 .82rem/1.4 Roboto,Arial,sans-serif; }
+.component-link { display:block; color:inherit !important; text-decoration:none !important; border-radius:12px; }
+.component-link .component-card { height:100%; transition:transform .16s ease,box-shadow .16s ease; }
+.component-link:hover .component-card, .component-link:focus-visible .component-card { transform:translateY(-3px); border-color:#65a0de; box-shadow:0 9px 18px rgba(18,61,121,.17); }
+.component-link small { display:block; margin-top:.6rem; color:#0755a8; font:800 .76rem Roboto,Arial,sans-serif; }
+.legal-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:.75rem; }
+.legal-card { padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; }
+.legal-card strong { display:block; color:#092b66; font:800 1rem Roboto,Arial,sans-serif; }
+.legal-card p { color:#405a7d; font:500 .86rem/1.45 Roboto,Arial,sans-serif; }
+.legal-card a { color:#0755a8; font:800 .86rem Roboto,Arial,sans-serif; }
+.evidence-strip { margin:1rem 0; padding:.9rem 1rem; background:#edf5ff; border-left:5px solid #0755a8; border-radius:9px; color:#183b6d; font:600 .88rem/1.45 Roboto,Arial,sans-serif; }
 .stage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; }
+.stage-grid.five { grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); }
 .stage { padding:1rem; text-align:center; background:#eaf4ff; border:1px solid #bcd6f1; border-radius:12px; }
 .stage span { display:block; margin-bottom:.3rem; color:#0870c0; font:800 .75rem Roboto,Arial,sans-serif; text-transform:uppercase; letter-spacing:.04em; }
 .stage strong { color:#092b66; font:800 1rem Roboto,Arial,sans-serif; }
@@ -954,7 +1004,8 @@ div.stButton > button {
     .block-container { padding: 1.2rem .75rem 1.6rem !important; }
     .brand { padding-bottom:.8rem; }
     .topic-bar { line-height:1.8; padding:.55rem .3rem; }
-    .topic-bar span { padding:0 .35rem; }
+    .topic-bar a { padding:.25rem .4rem; white-space:normal; }
+    .topic-bar a + a { border-left:0; }
     .hero { grid-template-columns:1fr; min-height:500px; }
     .mascot-wrap { position:absolute; inset:auto auto 0 0; width:43%; height:250px; min-height:0; }
     .robot { left:-.4rem; width:100%; }
@@ -984,6 +1035,7 @@ div.stButton > button {
     .chat-home-link { font-size:0; }
     .chat-home-link:after { content:"← Inicio"; font-size:.8rem; }
     .component-grid { grid-template-columns:1fr; }
+    .legal-cards { grid-template-columns:1fr; }
     .stage-grid { grid-template-columns:1fr; }
     .model-page { padding:1rem; }
     .model-intro { grid-template-columns:1fr; text-align:center; }
@@ -1079,6 +1131,24 @@ def detalle_panel_demostrativo(vista: str) -> str:
             </table></div>
         </div>
         """
+    if vista == "evidencias":
+        return """
+        <div class="panel-detail">
+            <h3>📎 Tareas y medios de verificación del Modelo</h3>
+            <p>Ejemplo de seguimiento transversal: cada fila indica qué se revisó, qué área debe sustentar la tarea y cuál sería la fuente comprobable.</p>
+            <div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>Componente / tarea</th><th>Periodo</th><th>Responsable de la tarea</th><th>Medio de verificación esperado</th><th>Estado demo</th></tr></thead>
+                <tbody>
+                    <tr><td>1 · Programa anual</td><td>2026</td><td>Alta Dirección / UFII</td><td>Resolución y matriz aprobada</td><td><span class="status-pill ok">Verificada</span></td></tr>
+                    <tr><td>4 · Tarea 4.1 PTE</td><td>Julio</td><td>Responsable del PTE / UFII</td><td>URL, ficha fechada y respuesta a observaciones</td><td><span class="status-pill wait">En revisión</span></td></tr>
+                    <tr><td>4 · Tareas 4.3 y 4.4</td><td>Julio</td><td>Responsables RVL y agendas</td><td>Reporte oficial, fecha y verificación</td><td><span class="status-pill sent">Coordinación</span></td></tr>
+                    <tr><td>6 · Capacitación</td><td>Agosto</td><td>UFII / áreas de apoyo</td><td>Programa, asistencia y material aprobado</td><td><span class="status-pill ok">Verificada</span></td></tr>
+                    <tr><td>8 · Seguimiento</td><td>Trimestre</td><td>UFII / áreas involucradas</td><td>Matriz e informe periódico dirigido a autoridades</td><td><span class="status-pill wait">Pendiente</span></td></tr>
+                </tbody>
+            </table></div>
+            <div class="evidence-strip">Indicadores posibles, una vez conectados a registros validados: tareas verificadas / tareas programadas; hallazgos subsanados / hallazgos comunicados; actividades sustentadas / actividades ejecutadas. Ningún indicador se calcula hoy con datos reales.</div>
+        </div>
+        """
     return """
     <div class="panel-detail">
         <h3>🔄 Así funcionaría el seguimiento</h3>
@@ -1100,6 +1170,7 @@ def pagina_panel_enfocado(vista: str) -> str:
         "orientaciones": "Orientaciones brindadas",
         "alertas": "Alertas preventivas",
         "derivaciones": "Derivaciones a la UFII",
+        "evidencias": "Tareas y evidencias del Modelo",
     }
     titulo = titulos.get(vista, "Panel de seguimiento")
     detalle = detalle_panel_demostrativo(vista)
@@ -1131,8 +1202,8 @@ pagina = f"""
         <p>Unidad Funcional de Integridad Institucional (UFII)</p>
     </header>
 
-    <nav class="topic-bar" aria-label="Áreas de orientación">
-        <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+    <nav class="topic-bar" aria-label="Rutas principales">
+        <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
     </nav>
 
     <section class="hero panel">
@@ -1168,12 +1239,16 @@ pagina = f"""
             <a class="menu-link" href="?modulo=rvl" target="_self"><div class="menu-card"><span class="menu-icon rvl-menu-icon">{icono_rvl_html}</span><strong>Registro de Visitas RVL</strong></div></a>
             <a class="menu-link" href="?modulo=guias" target="_self"><div class="menu-card"><span class="menu-icon">✅</span><strong>Checklists y Guías</strong></div></a>
             <a class="menu-link" href="?modulo=derivacion" target="_self"><div class="menu-card"><span class="menu-icon">💼</span><strong>Derivar a UFII</strong></div></a>
+            <a class="menu-link" href="?modulo=transparencia" target="_self"><div class="menu-card"><span class="menu-icon">🔎</span><strong>Transparencia y PTE</strong></div></a>
+            <a class="menu-link" href="?modulo=marco" target="_self"><div class="menu-card"><span class="menu-icon">📚</span><strong>Base legal y procesos</strong></div></a>
+            <a class="menu-link" href="?modulo=seguimiento" target="_self"><div class="menu-card"><span class="menu-icon">📊</span><strong>Seguimiento del Modelo</strong></div></a>
         </div>
+        <a class="election-link" href="?modulo=neutralidad" target="_self"><span class="election-icon">🗳️</span><span><strong>Neutralidad electoral 2026</strong><small>Guía preventiva · Elecciones regionales y municipales del 4 de octubre</small></span><span class="election-arrow">›</span></a>
     </section>
 
     <section id="panel-seguimiento" class="section panel">
-        <h2 class="section-title">Panel de seguimiento</h2>
-        <p class="demo-caption">Selecciona una tarjeta para visualizar cómo se presentarían los registros y el proceso de seguimiento.</p>
+        <h2 class="section-title">Panel de seguimiento · demostración UFII</h2>
+        <p class="demo-caption">Selecciona una tarjeta para visualizar cómo se presentarían los registros y el proceso de seguimiento. Esta maqueta es pública y contiene únicamente ejemplos ficticios.</p>
         <div class="metrics-grid">
             <a class="metric metric-link" href="?panel=consultas#panel-seguimiento" target="_self">
                 <span class="metric-icon">💬</span><div class="metric-title">Consultas recibidas</div><div class="metric-rule"></div>
@@ -1192,18 +1267,109 @@ pagina = f"""
                 <div class="metric-value">6 <small>solicitudes derivadas</small></div>
             </a>
         </div>
+        <a class="evidence-entry" href="?panel=evidencias" target="_self">📎 Ver cómo se seguirían las tareas, responsables, indicadores y medios de verificación del Modelo →</a>
         {detalle_panel_inicio}
         <p class="demo-disclaimer"><strong>Datos simulados para la maqueta:</strong> todas las cifras, códigos y situaciones son ficticias. Se muestran únicamente para demostrar cómo funcionaría el seguimiento; no representan carga laboral ni resultados oficiales de la UFII.</p>
     </section>
 
     <footer class="footer-nav">
-        <div>💬 &nbsp; Ayuda</div>
-        <div>🔎 &nbsp; Seguimiento de consulta</div>
+        <a href="?modulo=guias" target="_self">💬 &nbsp; Guías preventivas</a>
+        <a href="?modulo=seguimiento" target="_self">🔎 &nbsp; Seguimiento del Modelo (demo)</a>
     </footer>
 </main>
 """
 
 pagina_inicio = pagina
+
+# El Modelo y las rutas de esta maqueta se fundamentan en el D. S. 148-2024-PCM
+# y la Directiva 001-2026-PCM/SIP. Las evidencias indicadas son ejemplos de
+# presentación: no equivalen a acreditación ante la SIP ni a registros reales.
+NORMA_MODELO = "https://www.gob.pe/institucion/rree/normas-legales/6332599-148-2024-pcm"
+DIRECTIVA_MODELO = "https://www.gob.pe/institucion/pcm/normas-legales/7644478-002-2026-pcm-sip"
+NORMA_EVALUACION = "https://www.gob.pe/institucion/pcm/normas-legales/7192485-009-2025-pcm-sip"
+MODIFICACION_EVALUACION = "https://www.gob.pe/institucion/pcm/normas-legales/8166933-007-2026-pcm-sip"
+PTE_DIRIS = "https://www.transparencia.gob.pe/enlaces/pte_transparencia_enlaces.aspx?id_entidad=18791"
+LINEAMIENTO_PTE = "https://www.gob.pe/institucion/antaip/normas-legales/7244059-066-2025-jus-dgtaipd"
+PROGRAMA_DIRIS_2026 = "https://www.gob.pe/institucion/dirislimanorte/normas-legales/7946922-d000352-2026-dg-diris-ln"
+NORMA_NEUTRALIDAD_PCM = "https://www.gob.pe/institucion/pcm/normas-legales/7677427-003-2026-pcm-sip"
+LINEAMIENTOS_JNE = "https://www.gob.pe/institucion/jne/normas-legales/7908823-000021-2026-p-jne"
+ELECCIONES_2026 = "https://erm2026.onpe.gob.pe/"
+RESOLUCIONES_DIRIS = "https://www.gob.pe/institucion/dirislimanorte/normas-legales/tipos/26-resolucion-directoral?filter%5Border%5D=publication_desc&sheet=26"
+
+COMPONENTES = {
+    1: {
+        "titulo": "Compromiso de la Alta Dirección",
+        "resumen": "Liderazgo institucional, compromiso suscrito y condiciones para ejercer la función de integridad.",
+        "acciones": ("Gestionar el Compromiso de Integridad Institucional y su difusión.", "Preparar el Programa de Integridad anual y coordinar su aprobación.", "Identificar brechas, responsables y necesidades de recursos."),
+        "roles": "El titular respalda y aprueba; la UFII propone, coordina y hace seguimiento. El compromiso se renueva si cambia el titular de la entidad.",
+        "ejemplo": "Compromiso firmado, resolución que aprueba el Programa, matriz de acciones y constancias de difusión.",
+        "ruta": "marco",
+    },
+    2: {
+        "titulo": "Gestión de riesgos",
+        "resumen": "Identificar, analizar y tratar riesgos que afectan la integridad en procesos institucionales.",
+        "acciones": ("Seleccionar procesos expuestos y coordinar con las áreas dueñas del proceso.", "Registrar riesgos, medidas de tratamiento y responsables.", "Revisar avances y actualizar los controles acordados."),
+        "roles": "Las áreas responsables describen y gestionan sus procesos; la UFII orienta y coordina el seguimiento de riesgos de integridad.",
+        "ejemplo": "Matriz de riesgos, actas de coordinación, plan de tratamiento y seguimiento fechado.",
+        "ruta": "guias",
+    },
+    3: {
+        "titulo": "Políticas de integridad",
+        "resumen": "Normas de conducta, prevención de conflictos de intereses y prácticas de debida diligencia.",
+        "acciones": ("Orientar sobre principios, deberes y prohibiciones éticas.", "Explicar qué declaración jurada corresponde y cómo llegar al sistema oficial.", "Canalizar dudas sobre conflictos de intereses y restricciones aplicables."),
+        "roles": "La UFII brinda orientación preventiva; cada área competente verifica obligaciones concretas y aplica las medidas que le corresponden.",
+        "ejemplo": "Material aprobado, constancias de orientación sin datos sensibles y documentación oficial de las áreas competentes.",
+        "ruta": "etica",
+    },
+    4: {
+        "titulo": "Transparencia, datos abiertos y rendición de cuentas",
+        "resumen": "Acceso público oportuno, PTE, solicitudes de información, RVL, agendas oficiales y datos abiertos.",
+        "acciones": ("Verificar la actualización periódica del PTE y coordinar observaciones (tarea 4.1).", "Dar seguimiento institucional a solicitudes de información, RVL y agendas oficiales (tareas 4.2 a 4.4).", "Coordinar apertura de datos y mecanismos de rendición de cuentas (tareas 4.5 y 4.6)."),
+        "roles": "El responsable del PTE publica la información; la UFII verifica, coordina y monitorea sin asumir la función de publicación.",
+        "ejemplo": "Ficha por rubro y periodo con URL, fecha de revisión, hallazgo, respuesta del responsable y enlace o constancia verificable.",
+        "ruta": "transparencia",
+    },
+    5: {
+        "titulo": "Controles y auditoría",
+        "resumen": "Articulación de controles, atención de recomendaciones y prevención en decisiones institucionales.",
+        "acciones": ("Ubicar controles relevantes en los procesos identificados.", "Coordinar con los órganos y áreas competentes la información de seguimiento.", "Registrar medidas correctivas y fechas de verificación."),
+        "roles": "Los órganos de control y las áreas responsables mantienen sus competencias; la UFII articula el componente desde el enfoque preventivo.",
+        "ejemplo": "Matriz de recomendaciones y acciones, informes de las áreas competentes y seguimiento de medidas.",
+        "ruta": "guias",
+    },
+    6: {
+        "titulo": "Comunicación y capacitación",
+        "resumen": "Inducción, difusión interna y externa, formación y materiales de consulta preventiva.",
+        "acciones": ("Planificar temas, destinatarios y canales de difusión.", "Realizar acciones formativas y recoger constancias.", "Evaluar alcance y ajustar contenidos de acuerdo con necesidades detectadas."),
+        "roles": "La UFII coordina contenidos de integridad con las áreas de comunicaciones y capacitación responsables de su ejecución.",
+        "ejemplo": "Cronograma, piezas aprobadas, enlaces de publicaciones, listas de asistencia e informes de resultados.",
+        "ruta": "guias",
+    },
+    7: {
+        "titulo": "Canal de denuncia",
+        "resumen": "Ruta segura de denuncias por presunta corrupción y medidas de protección del denunciante.",
+        "acciones": ("Difundir el canal oficial y distinguir una denuncia de una consulta.", "Proteger la confidencialidad y remitir los hechos solo por canales competentes.", "Monitorear mejoras del canal sin exhibir identidades ni detalles de casos."),
+        "roles": "La unidad competente gestiona las denuncias y solicitudes de protección; el asistente únicamente informa y deriva.",
+        "ejemplo": "Constancia de difusión y estadísticas agregadas autorizadas, sin identidad ni contenido específico de denuncias.",
+        "ruta": "denuncias",
+    },
+    8: {
+        "titulo": "Supervisión y monitoreo",
+        "resumen": "Seguimiento del Programa de Integridad, verificación de tareas y reporte de brechas.",
+        "acciones": ("Relacionar cada actividad del Programa con su responsable, periodo y medio de verificación.", "Registrar avances y observaciones con fecha y fuente institucional.", "Informar periódicamente al titular y a la máxima autoridad administrativa."),
+        "roles": "La UFII consolida y custodia los medios de verificación; las otras unidades ejecutan las tareas y entregan la documentación.",
+        "ejemplo": "Matriz de seguimiento anual, informe periódico, documento de sustento y acciones para cerrar brechas.",
+        "ruta": "seguimiento",
+    },
+    9: {
+        "titulo": "Encargado del Modelo de Integridad",
+        "resumen": "Función de integridad formalizada, competencias especializadas y red de coordinación para sostener el Modelo.",
+        "acciones": ("Verificar la modalidad y el documento que formaliza la función de integridad.", "Coordinar la certificación especializada cuando la SIP establezca sus condiciones y plazos.", "Desarrollar la red de integridad y documentar la cooperación interinstitucional."),
+        "roles": "La unidad designada para la función de integridad coordina el Modelo; su denominación y responsabilidades concretas deben constar en documentos institucionales.",
+        "ejemplo": "Documento de formalización, constancias de certificación cuando correspondan y registro de reuniones de la red.",
+        "ruta": "derivacion",
+    },
+}
 
 modulos = {
     "modelo": ("🛡️", "Modelo de Integridad", "Espacio para orientar sobre los componentes y acciones preventivas del Modelo de Integridad."),
@@ -1213,6 +1379,11 @@ modulos = {
     "rvl": (icono_rvl_html, "Registro de Visitas RVL", "Espacio de orientación operativa sobre el Registro de Visitas en Línea."),
     "guias": ("✅", "Checklists y Guías", "Repositorio de materiales preventivos y herramientas de consulta rápida."),
     "derivacion": ("💼", "Derivar a UFII", "Espacio para identificar cuándo corresponde solicitar orientación directa a la UFII."),
+    "transparencia": ("🔎", "Transparencia y PTE", "Consulta el Portal de Transparencia Estándar de DIRIS y la ruta de verificación del componente 4."),
+    "marco": ("📚", "Base legal y procesos", "Consulta las normas vigentes y cómo se enlazan con la demostración del Modelo."),
+    "seguimiento": ("📊", "Seguimiento del Modelo", "Visualiza la ruta de acciones, responsables, indicadores y medios de verificación."),
+    "neutralidad": ("🗳️", "Neutralidad electoral 2026", "Orientación preventiva sobre reglas de neutralidad y publicidad estatal durante el proceso electoral."),
+    "componente": ("🛡️", "Componente del Modelo", "Revisa sus acciones y ejemplos de evidencia."),
 }
 
 
@@ -1226,8 +1397,8 @@ def pagina_modulo_info(simbolo: str, titulo: str, descripcion: str, contenido: s
             <h2>Asistente de Integridad Institucional</h2>
             <p>Unidad Funcional de Integridad Institucional (UFII)</p>
         </header>
-        <nav class="topic-bar" aria-label="Áreas de orientación">
-            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+        <nav class="topic-bar" aria-label="Rutas principales">
+            <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
         </nav>
         <section class="info-page panel">
             <div class="info-intro">
@@ -1240,148 +1411,17 @@ def pagina_modulo_info(simbolo: str, titulo: str, descripcion: str, contenido: s
     """
 
 
-def pagina_panel_control(vista: str) -> str:
-    """Construye un panel administrativo interactivo con datos ficticios."""
-    vistas_validas = {"resumen", "consultas", "alertas", "derivaciones", "fuentes"}
-    vista = vista if vista in vistas_validas else "resumen"
-
-    if vista == "consultas":
-        detalle = """
-        <section class="admin-section">
-            <h3>Consultas registradas - ejemplo mensual</h3>
-            <div class="admin-table-wrap"><table class="admin-table">
-                <thead><tr><th>Código</th><th>Fecha</th><th>Canal</th><th>Tema clasificado</th><th>Estado</th></tr></thead>
-                <tbody>
-                    <tr><td>INT-2026-001</td><td>03/07/2026</td><td>Chat web</td><td>Conflicto de intereses</td><td><span class="status-pill ok">Orientada</span></td></tr>
-                    <tr><td>INT-2026-002</td><td>05/07/2026</td><td>Chat web</td><td>Declaración jurada</td><td><span class="status-pill ok">Orientada</span></td></tr>
-                    <tr><td>INT-2026-003</td><td>08/07/2026</td><td>Correo</td><td>Modelo de Integridad</td><td><span class="status-pill sent">Derivada</span></td></tr>
-                    <tr><td>INT-2026-004</td><td>11/07/2026</td><td>Chat web</td><td>Registro de Visitas</td><td><span class="status-pill ok">Orientada</span></td></tr>
-                    <tr><td>INT-2026-005</td><td>15/07/2026</td><td>Anexo</td><td>Canal de denuncias</td><td><span class="status-pill wait">En seguimiento</span></td></tr>
-                    <tr><td>INT-2026-006</td><td>19/07/2026</td><td>Chat web</td><td>Regalos o ventajas</td><td><span class="status-pill ok">Orientada</span></td></tr>
-                </tbody>
-            </table></div>
-        </section>
-        """
-    elif vista == "alertas":
-        detalle = """
-        <section class="admin-section">
-            <h3>Alertas preventivas identificadas - ejemplos</h3>
-            <div class="admin-table-wrap"><table class="admin-table">
-                <thead><tr><th>Alerta</th><th>Situación general</th><th>Acción preventiva</th><th>Estado</th></tr></thead>
-                <tbody>
-                    <tr><td>AL-001</td><td>Posible conflicto de intereses</td><td>Orientación previa a la decisión</td><td><span class="status-pill ok">Atendida</span></td></tr>
-                    <tr><td>AL-002</td><td>Ofrecimiento de obsequio</td><td>Recordatorio de prohibiciones y canal interno</td><td><span class="status-pill ok">Atendida</span></td></tr>
-                    <tr><td>AL-003</td><td>Registro RVL incompleto</td><td>Verificación de datos y registro de salida</td><td><span class="status-pill wait">En seguimiento</span></td></tr>
-                    <tr><td>AL-004</td><td>Consulta sobre información reservada</td><td>Derivación al responsable competente</td><td><span class="status-pill sent">Derivada</span></td></tr>
-                </tbody>
-            </table></div>
-        </section>
-        """
-    elif vista == "derivaciones":
-        detalle = """
-        <section class="admin-section">
-            <h3>Seguimiento de derivaciones a la UFII - ejemplos</h3>
-            <div class="admin-table-wrap"><table class="admin-table">
-                <thead><tr><th>Código</th><th>Tema</th><th>Fecha de derivación</th><th>Responsable</th><th>Estado</th></tr></thead>
-                <tbody>
-                    <tr><td>DER-001</td><td>Asistencia sobre componente del Modelo</td><td>08/07/2026</td><td>UFII</td><td><span class="status-pill ok">Cerrada</span></td></tr>
-                    <tr><td>DER-002</td><td>Orientación ética especializada</td><td>12/07/2026</td><td>UFII</td><td><span class="status-pill wait">En revisión</span></td></tr>
-                    <tr><td>DER-003</td><td>Incidencia operativa RVL</td><td>18/07/2026</td><td>UFII / RVL</td><td><span class="status-pill sent">Derivada</span></td></tr>
-                    <tr><td>DER-004</td><td>Consulta sobre canal competente</td><td>24/07/2026</td><td>UFII</td><td><span class="status-pill ok">Cerrada</span></td></tr>
-                </tbody>
-            </table></div>
-        </section>
-        """
-    elif vista == "fuentes":
-        detalle = """
-        <section class="admin-section">
-            <h3>¿De dónde saldrían los datos reales?</h3>
-            <div class="source-grid">
-                <article class="source-card"><strong>1. Chat y formularios INTEGRID-LN</strong><p>Generarían código, fecha, canal, tema consultado y respuesta brindada, sin exponer datos sensibles en el tablero.</p></article>
-                <article class="source-card"><strong>2. Registro de atención UFII</strong><p>Incorporaría responsable, estado, fecha de derivación, acciones efectuadas y fecha de cierre.</p></article>
-                <article class="source-card"><strong>3. Archivos institucionales</strong><p>Podrían integrarse mediante Excel/CSV, una base de datos autorizada o conexiones con sistemas institucionales.</p></article>
-            </div>
-        </section>
-        <section class="admin-section">
-            <h3>Estructura propuesta para la base de seguimiento</h3>
-            <div class="admin-table-wrap"><table class="admin-table">
-                <thead><tr><th>Campo</th><th>Ejemplo ficticio</th><th>Uso en el panel</th></tr></thead>
-                <tbody>
-                    <tr><td>codigo_consulta</td><td>INT-2026-001</td><td>Trazabilidad sin mostrar identidad</td></tr>
-                    <tr><td>fecha_hora</td><td>03/07/2026 10:25</td><td>Seguimiento por periodo</td></tr>
-                    <tr><td>canal</td><td>Chat web</td><td>Distribución por canal</td></tr>
-                    <tr><td>tema</td><td>Conflicto de intereses</td><td>Demanda temática</td></tr>
-                    <tr><td>estado</td><td>Orientada</td><td>Seguimiento de atención</td></tr>
-                    <tr><td>derivacion</td><td>No / Sí</td><td>Control de casos derivados</td></tr>
-                </tbody>
-            </table></div>
-        </section>
-        """
-    else:
-        detalle = """
-        <section class="admin-section">
-            <h3>Temas consultados durante el mes de ejemplo</h3>
-            <div class="topic-bars">
-                <div class="topic-row"><span>Ética pública</span><div class="topic-track"><div class="topic-fill" style="width:76%"></div></div><b>16</b></div>
-                <div class="topic-row"><span>Declaraciones juradas</span><div class="topic-track"><div class="topic-fill" style="width:52%"></div></div><b>11</b></div>
-                <div class="topic-row"><span>Registro de Visitas</span><div class="topic-track"><div class="topic-fill" style="width:38%"></div></div><b>8</b></div>
-                <div class="topic-row"><span>Canal de denuncias</span><div class="topic-track"><div class="topic-fill" style="width:33%"></div></div><b>7</b></div>
-            </div>
-        </section>
-        <section class="admin-section">
-            <h3>Actividad reciente - muestra</h3>
-            <div class="admin-table-wrap"><table class="admin-table">
-                <thead><tr><th>Código</th><th>Canal</th><th>Tema</th><th>Estado</th></tr></thead>
-                <tbody>
-                    <tr><td>INT-2026-006</td><td>Chat web</td><td>Regalos o ventajas</td><td><span class="status-pill ok">Orientada</span></td></tr>
-                    <tr><td>INT-2026-005</td><td>Anexo</td><td>Canal de denuncias</td><td><span class="status-pill wait">En seguimiento</span></td></tr>
-                    <tr><td>INT-2026-004</td><td>Chat web</td><td>Registro de Visitas</td><td><span class="status-pill ok">Orientada</span></td></tr>
-                </tbody>
-            </table></div>
-        </section>
-        """
-
-    tabs = "".join(
-        f'<a class="{"active" if vista == clave else ""}" href="?modulo=panel_admin&vista={clave}" target="_self">{etiqueta}</a>'
-        for clave, etiqueta in (
-            ("resumen", "Resumen"),
-            ("consultas", "Consultas"),
-            ("alertas", "Alertas"),
-            ("derivaciones", "Derivaciones"),
-            ("fuentes", "Origen de datos"),
-        )
-    )
-
-    return f"""
-    <main class="integri-shell">
-        <nav class="topic-bar" aria-label="Áreas de orientación">
-            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
-        </nav>
-        <section class="admin-page panel">
-            <header class="admin-header">
-                <div class="admin-lock">🔐</div>
-                <div><h2>Panel de control UFII</h2><p>Seguimiento administrativo de orientaciones, alertas y derivaciones.</p></div>
-                <div class="admin-demo-badge">MAQUETA INTERACTIVA</div>
-            </header>
-            <nav class="admin-tabs">{tabs}</nav>
-            <div class="admin-kpis">
-                <a class="admin-kpi" href="?modulo=panel_admin&vista=consultas" target="_self"><span>💬</span><strong>Consultas recibidas</strong><b>42</b><small>Abrir registro de ejemplo →</small></a>
-                <a class="admin-kpi" href="?modulo=panel_admin&vista=consultas" target="_self"><span>✅</span><strong>Orientaciones brindadas</strong><b>36</b><small>Revisar estados →</small></a>
-                <a class="admin-kpi" href="?modulo=panel_admin&vista=alertas" target="_self"><span>⚠️</span><strong>Alertas preventivas</strong><b>7</b><small>Ver situaciones →</small></a>
-                <a class="admin-kpi" href="?modulo=panel_admin&vista=derivaciones" target="_self"><span>🗂️</span><strong>Derivaciones a UFII</strong><b>6</b><small>Ver seguimiento →</small></a>
-            </div>
-            {detalle}
-            <p class="demo-disclaimer"><strong>Datos completamente simulados:</strong> esta pantalla muestra cómo podría funcionar el panel administrativo. No contiene carga laboral, casos ni resultados reales de la UFII. En producción requerirá autenticación y permisos.</p>
-            <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio público</a></div>
-        </section>
-    </main>
-    """
-
-
 modulo_actual = st.query_params.get("modulo", "")
 
 if modulo_actual == "modelo":
-    pagina = """
+    componentes_html = "".join(
+        f'<a class="component-link" href="?modulo=componente&n={numero}" target="_self">'
+        f'<article class="component-card"><span class="component-number">{numero}</span>'
+        f'<strong>{html.escape(datos["titulo"])}</strong><p>{html.escape(datos["resumen"])}</p>'
+        f'<small>Ver acciones y evidencias →</small></article></a>'
+        for numero, datos in COMPONENTES.items()
+    )
+    pagina = f"""
     <main class="integri-shell">
         <header class="brand">
             <h1>INTEGRID-LN</h1>
@@ -1390,7 +1430,7 @@ if modulo_actual == "modelo":
             <p>Unidad Funcional de Integridad Institucional (UFII)</p>
         </header>
         <nav class="topic-bar" aria-label="Áreas de orientación">
-            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+            <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
         </nav>
 
         <section class="model-page panel">
@@ -1404,32 +1444,36 @@ if modulo_actual == "modelo":
 
             <div class="model-section">
                 <h3>Los 9 componentes oficiales</h3>
-                <p class="model-section-lead">Seleccionamos la idea principal de cada componente para explicarla de manera clara y práctica.</p>
+                <p class="model-section-lead">Abre cada tarjeta para ver tareas, responsabilidades y ejemplos de sustento. Las referencias son orientativas para esta maqueta.</p>
                 <div class="component-grid">
-                    <article class="component-card"><span class="component-number">1</span><strong>Compromiso de la Alta Dirección</strong><p>Asegura liderazgo y condiciones institucionales para fortalecer una cultura de integridad.</p></article>
-                    <article class="component-card"><span class="component-number">2</span><strong>Gestión de riesgos</strong><p>Identifica y mitiga procesos vulnerables a delitos y prácticas contrarias a la ética.</p></article>
-                    <article class="component-card"><span class="component-number">3</span><strong>Políticas de integridad pública</strong><p>Establece estándares de cumplimiento y responsabilidades para la entidad y sus servidores.</p></article>
-                    <article class="component-card"><span class="component-number">4</span><strong>Transparencia, datos abiertos y rendición de cuentas</strong><p>Promueve el acceso a la información, la transparencia y la rendición de cuentas.</p></article>
-                    <article class="component-card"><span class="component-number">5</span><strong>Controles internos, externos y auditorías</strong><p>Fortalece los mecanismos de control y la atención diligente de las acciones de auditoría.</p></article>
-                    <article class="component-card"><span class="component-number">6</span><strong>Comunicación y capacitación</strong><p>Desarrolla inducción, difusión y capacitación continua para un desempeño ético.</p></article>
-                    <article class="component-card"><span class="component-number">7</span><strong>Canal de denuncias</strong><p>Asegura la gestión de denuncias de corrupción y las medidas de protección correspondientes.</p></article>
-                    <article class="component-card"><span class="component-number">8</span><strong>Supervisión y monitoreo</strong><p>Evalúa el avance del modelo y genera información para tomar decisiones de mejora.</p></article>
-                    <article class="component-card"><span class="component-number">9</span><strong>Encargado del Modelo de Integridad</strong><p>Articula los componentes y orienta a las áreas para su implementación oportuna.</p></article>
+                    {componentes_html}
                 </div>
             </div>
 
             <div class="model-section">
-                <h3>Etapas de implementación</h3>
+                <h3>Tres procesos de implementación</h3>
+                <p class="model-section-lead">La Directiva N.° 001-2026-PCM/SIP organiza las tareas en planificación, desarrollo de los componentes y seguimiento y evaluación.</p>
                 <div class="stage-grid">
+                    <div class="stage"><span>Proceso 1</span><strong>Planificación</strong></div>
+                    <div class="stage"><span>Proceso 2</span><strong>Desarrollo</strong></div>
+                    <div class="stage"><span>Proceso 3</span><strong>Seguimiento y evaluación</strong></div>
+                </div>
+            </div>
+            <div class="model-section">
+                <h3>Cinco etapas de evaluación del ICP</h3>
+                <p class="model-section-lead">Son niveles de evaluación de la implementación; no son los mismos tres procesos anteriores.</p>
+                <div class="stage-grid five">
                     <div class="stage"><span>Etapa 1</span><strong>Inicial</strong></div>
                     <div class="stage"><span>Etapa 2</span><strong>Institucionalización</strong></div>
                     <div class="stage"><span>Etapa 3</span><strong>Estandarización</strong></div>
+                    <div class="stage"><span>Etapa 4</span><strong>Eficacia</strong></div>
+                    <div class="stage"><span>Etapa 5</span><strong>Impacto</strong></div>
                 </div>
             </div>
 
             <div class="model-section diris-box">
                 <strong>Aplicación en DIRIS Lima Norte</strong>
-                <p>Próximamente incorporaremos aquí los avances, responsables, actividades y evidencias institucionales. Esta información será publicada únicamente después de ser validada por la UFII.</p>
+                <p>El Programa de Integridad 2026 fue aprobado por Resolución Directoral N.° D000352-2026-DG-DIRIS.LN. Esta demostración muestra rutas y ejemplos, sin reportar avances oficiales; el seguimiento real requiere vincular acciones aprobadas, responsables, medios de verificación y validaciones de las unidades competentes.</p>
             </div>
 
             <div class="model-section diris-box">
@@ -1439,7 +1483,9 @@ if modulo_actual == "modelo":
 
             <div class="model-actions">
                 <a class="back-button" href="?" target="_self">← Volver al inicio</a>
-                <a class="source-button" href="https://www.gob.pe/integridad" target="_blank" rel="noopener noreferrer">Consultar fuente oficial PCM ↗</a>
+                <a class="source-button" href="?modulo=marco" target="_self">Ver base legal y procesos →</a>
+                <a class="source-button" href="{PROGRAMA_DIRIS_2026}" target="_blank" rel="noopener noreferrer">Programa DIRIS 2026 ↗</a>
+                <a class="source-button" href="{DIRECTIVA_MODELO}" target="_blank" rel="noopener noreferrer">Directiva N.° 001-2026 ↗</a>
             </div>
         </section>
     </main>
@@ -1454,7 +1500,7 @@ elif modulo_actual == "etica":
             <p>Unidad Funcional de Integridad Institucional (UFII)</p>
         </header>
         <nav class="topic-bar" aria-label="Áreas de orientación">
-            <span>Orientación Normativa</span><span>Canal de Denuncias</span><span>Registro de Visitas</span>
+            <a href="?modulo=modelo" target="_self">Modelo de Integridad</a><a href="?modulo=etica" target="_self">Ética y prevención</a><a href="?modulo=transparencia" target="_self">Transparencia</a><a href="?modulo=marco" target="_self">Base legal y procesos</a>
         </nav>
 
         <section class="ethics-page panel">
@@ -1524,21 +1570,63 @@ elif modulo_actual == "etica":
         </section>
     </main>
     """
+elif modulo_actual == "neutralidad":
+    pagina = pagina_modulo_info(
+        "🗳️",
+        "Neutralidad electoral 2026",
+        "Guía preventiva para el personal de DIRIS Lima Norte durante las elecciones regionales y municipales del 4 de octubre de 2026.",
+        f"""
+        <div class="info-section info-note blue"><strong>Designación institucional:</strong> la R. D. N.° D000173-2026-DG-DIRIS.LN designó al Oficial de Integridad Institucional de DIRIS Lima Norte como Oficial de Integridad Electoral, en adición a sus funciones. Esta ruta especial complementa las reglas de la PCM y los lineamientos del JNE.</div>
+        <div class="info-section">
+            <h3>Situaciones que requieren una consulta preventiva</h3>
+            <div class="info-grid cols-3">
+                <article class="info-card"><span class="info-card-icon">🏢</span><strong>Recursos de la entidad</strong><p>Dudas sobre uso de instalaciones, vehículos, tiempo de trabajo o canales institucionales con fines electorales.</p></article>
+                <article class="info-card"><span class="info-card-icon">📣</span><strong>Comunicaciones públicas</strong><p>Revisar con las áreas competentes la publicidad estatal, difusión institucional e imagen de autoridades durante el proceso electoral.</p></article>
+                <article class="info-card"><span class="info-card-icon">👥</span><strong>Conducta en funciones</strong><p>Prevenir actos de proselitismo, presiones o uso del cargo para favorecer una opción política.</p></article>
+            </div>
+        </div>
+        <div class="info-section">
+            <h3>Ruta de orientación y sustento</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Identifica la actividad institucional o decisión sobre la que existe duda antes de publicarla o ejecutarla.</div>
+                <div class="process-step"><span>2</span>Consulta al Oficial de Integridad Electoral designado y a las áreas competentes; la guía no reemplaza una decisión institucional.</div>
+                <div class="process-step"><span>3</span>Conserva, en el sistema institucional autorizado, la consulta, la orientación y el sustento o ajuste adoptado.</div>
+                <div class="process-step"><span>4</span>Si corresponde comunicar una presunta infracción, utiliza el canal oficial competente; este chatbot no recibe reportes ni pruebas.</div>
+            </div>
+        </div>
+        <div class="info-section info-note yellow"><strong>Para la presentación:</strong> son ejemplos de orientación, no casos reales ni una declaración de cumplimiento. Confirmar quién ocupa actualmente el cargo designado y el procedimiento interno antes de usar este módulo como canal formal.</div>
+        <div class="model-actions">
+            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+            <a class="source-button" href="{NORMA_NEUTRALIDAD_PCM}" target="_blank" rel="noopener noreferrer">PCM · R. SIP N.° 003-2026 ↗</a>
+            <a class="source-button" href="{LINEAMIENTOS_JNE}" target="_blank" rel="noopener noreferrer">JNE · R. N.° 000021-2026 ↗</a>
+            <a class="source-button" href="{RESOLUCIONES_DIRIS}" target="_blank" rel="noopener noreferrer">DIRIS · R. D. N.° D000173-2026 ↗</a>
+            <a class="source-button" href="{ELECCIONES_2026}" target="_blank" rel="noopener noreferrer">Calendario ONPE ↗</a>
+        </div>
+        """,
+    )
 elif modulo_actual == "declaraciones":
+    tipo_declaracion = st.query_params.get("tipo", "")
+    rutas_declaracion = {
+        "intereses": """<div class="info-section info-note blue"><strong>Ruta DJI · ejemplo:</strong> confirma con el área que administra los obligados si tu cargo o función está comprendido; ingresa al sistema oficial de la Contraloría; completa y firma en la oportunidad aplicable; conserva el cargo de presentación. Una orientación recibida por chat no demuestra que la DJI fue presentada.</div>""",
+        "patrimonio": """<div class="info-section info-note blue"><strong>Ruta Bienes y Rentas · ejemplo:</strong> verifica la condición de obligado y la oportunidad con la unidad encargada; utiliza la plataforma oficial indicada, registra y firma la declaración y guarda la constancia correspondiente. No compartas información patrimonial en este chat.</div>""",
+        "otras": """<div class="info-section info-note blue"><strong>Otros formatos:</strong> consulta el documento interno vigente y el área competente antes de completar una declaración de incompatibilidades, impedimentos o conflicto de intereses; INTEGRID-LN no inventa obligaciones adicionales.</div>""",
+    }
+    detalle_declaracion = rutas_declaracion.get(tipo_declaracion, "")
     pagina = pagina_modulo_info(
         "📄",
         "Declaraciones Juradas",
         "Guía para identificar el tipo de declaración, confirmar si corresponde presentarla y utilizar el canal oficial adecuado.",
-        """
+        f"""
         <div class="info-section">
             <h3>¿Qué declaración necesitas revisar?</h3>
             <p class="info-lead">No todas las declaraciones aplican a todas las personas. La condición de obligado debe confirmarse según el cargo, la función y la comunicación del área responsable.</p>
             <div class="info-grid cols-3">
-                <article class="info-card"><span class="info-card-icon">🔗</span><strong>Declaración Jurada de Intereses</strong><p>Informa vínculos familiares, políticos, económicos, comerciales e institucionales que podrían ser relevantes para la función pública.</p></article>
-                <article class="info-card"><span class="info-card-icon">🏠</span><strong>Ingresos, Bienes y Rentas</strong><p>Registra información patrimonial de autoridades, funcionarios o servidores comprendidos en la normativa aplicable.</p></article>
-                <article class="info-card"><span class="info-card-icon">🗂️</span><strong>Otras declaraciones institucionales</strong><p>Pueden existir formatos vinculados con incompatibilidades, impedimentos o conflictos de intereses. Deben validarse con el área responsable.</p></article>
+                <a class="guide-link" href="?modulo=declaraciones&tipo=intereses" target="_self"><span>🔗</span><strong>Declaración Jurada de Intereses</strong><small>Selecciona para ver un ejemplo de ruta de presentación.</small></a>
+                <a class="guide-link" href="?modulo=declaraciones&tipo=patrimonio" target="_self"><span>🏠</span><strong>Ingresos, Bienes y Rentas</strong><small>Selecciona para ver la ruta aplicable a sujetos comprendidos.</small></a>
+                <a class="guide-link" href="?modulo=declaraciones&tipo=otras" target="_self"><span>🗂️</span><strong>Otras declaraciones institucionales</strong><small>Selecciona para identificar el documento y responsable.</small></a>
             </div>
         </div>
+        {detalle_declaracion}
 
         <div class="info-section">
             <h3>Ruta rápida para presentar correctamente</h3>
@@ -1655,7 +1743,9 @@ elif modulo_actual == "guias":
                 <a class="guide-link" href="?modulo=denuncias" target="_self"><span>📣</span><strong>Antes de presentar una denuncia</strong><small>Identifica entidad, fecha, lugar, descripción, modalidad y código de seguimiento.</small></a>
                 <a class="guide-link" href="?modulo=rvl" target="_self"><span class="guide-rvl-icon">{icono_rvl_html}</span><strong>Antes de cerrar una visita</strong><small>Verifica identidad, destino, motivo, información completa y registro de salida.</small></a>
                 <a class="guide-link" href="?modulo=derivacion" target="_self"><span>💼</span><strong>Antes de derivar a la UFII</strong><small>Define el tema, la orientación requerida y el canal correcto sin exponer datos sensibles.</small></a>
-                <a class="guide-link" href="?modulo=modelo" target="_self"><span>🛡️</span><strong>Modelo de Integridad</strong><small>Consulta sus nueve componentes y las etapas de implementación.</small></a>
+                <a class="guide-link" href="?modulo=modelo" target="_self"><span>🛡️</span><strong>Modelo de Integridad</strong><small>Consulta nueve componentes, tres procesos de implementación y cinco etapas de evaluación.</small></a>
+                <a class="guide-link" href="?modulo=transparencia" target="_self"><span>🔎</span><strong>Antes de revisar el PTE</strong><small>Selecciona rubro y periodo, conserva enlace y fecha, coordina observaciones con el responsable.</small></a>
+                <a class="guide-link" href="?modulo=seguimiento" target="_self"><span>📊</span><strong>Antes de reportar una acción</strong><small>Vincula componente, Programa anual, responsable, fecha y medio de verificación.</small></a>
             </div>
         </div>
 
@@ -1719,11 +1809,142 @@ elif modulo_actual == "derivacion":
         </div>
         """,
     )
+elif modulo_actual == "componente":
+    try:
+        numero_componente = int(st.query_params.get("n", "0"))
+    except ValueError:
+        numero_componente = 0
+    datos_componente = COMPONENTES.get(numero_componente)
+    if datos_componente:
+        pasos_componente = "".join(
+            f'<div class="process-step"><span>{indice}</span>{html.escape(accion)}</div>'
+            for indice, accion in enumerate(datos_componente["acciones"], 1)
+        )
+        pagina = pagina_modulo_info(
+            "🛡️",
+            f'Componente {numero_componente} · {html.escape(datos_componente["titulo"])}',
+            html.escape(datos_componente["resumen"]),
+            f"""
+            <div class="info-section">
+                <h3>¿Cómo se aplicaría?</h3>
+                <div class="process-grid">{pasos_componente}</div>
+            </div>
+            <div class="info-section info-note blue"><strong>¿Quién interviene?</strong> {html.escape(datos_componente["roles"])}</div>
+            <div class="info-section info-note green"><strong>Ejemplo de medio de verificación:</strong> {html.escape(datos_componente["ejemplo"])}</div>
+            <div class="info-section info-note yellow"><strong>Alcance de esta demostración:</strong> las acciones describen una ruta de trabajo, no acreditan cumplimiento ni sustituyen los criterios específicos de la guía de evaluación y el Programa de Integridad aprobado de DIRIS.</div>
+            <div class="model-actions">
+                <a class="back-button" href="?modulo=modelo" target="_self">← Ver los nueve componentes</a>
+                <a class="source-button" href="?modulo={datos_componente['ruta']}" target="_self">Abrir ruta relacionada →</a>
+                <a class="source-button" href="{DIRECTIVA_MODELO}" target="_blank" rel="noopener noreferrer">Directiva N.° 001-2026 ↗</a>
+            </div>
+            """,
+        )
+    else:
+        pagina = pagina_modulo_info("🛡️", "Componente no encontrado", "Selecciona una de las nueve tarjetas del Modelo.", '<a class="back-button" href="?modulo=modelo" target="_self">Ver componentes</a>')
+elif modulo_actual == "transparencia":
+    pagina = pagina_modulo_info(
+        "🔎",
+        "Transparencia y Portal de Transparencia Estándar",
+        "Componente 4 del Modelo: información pública, acceso a la información, visitas y agendas, datos abiertos y rendición de cuentas.",
+        f"""
+        <div class="info-section">
+            <h3>Consulta el PTE oficial de DIRIS Lima Norte</h3>
+            <p class="info-lead">Puedes revisar información de la entidad por rubro: datos generales, planeamiento, presupuesto, personal, contrataciones, actividades oficiales, acceso a la información y registro de visitas.</p>
+            <a class="source-button" href="{PTE_DIRIS}" target="_blank" rel="noopener noreferrer">Abrir Portal de Transparencia de DIRIS Lima Norte ↗</a>
+        </div>
+        <div class="info-section">
+            <h3>Seis tareas del componente 4</h3>
+            <div class="info-grid cols-3">
+                <article class="info-card"><strong>4.1 · Actualizar el PTE</strong><p>El funcionario responsable publica la información; la UFII verifica periódicamente la actualización y coordina los hallazgos.</p></article>
+                <article class="info-card"><strong>4.2 · Solicitudes de información</strong><p>Comprobar que exista responsable designado y se atiendan las solicitudes conforme a la normativa aplicable.</p></article>
+                <article class="info-card"><strong>4.3 · Registro de Visitas</strong><p>Verificar que el RVL mantenga datos completos, precisos y oportunos.</p></article>
+                <article class="info-card"><strong>4.4 · Agendas oficiales</strong><p>Revisar la actualización del registro de actividades oficiales de la Alta Dirección.</p></article>
+                <article class="info-card"><strong>4.5 · Datos abiertos</strong><p>Coordinar con gobierno y transformación digital la apertura de conjuntos de datos pertinentes.</p></article>
+                <article class="info-card"><strong>4.6 · Rendición de cuentas</strong><p>Conocer los mecanismos institucionales de información pública y participación.</p></article>
+            </div>
+        </div>
+        <div class="info-section">
+            <h3>Demostración de verificación del PTE</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Seleccionar rubro, periodo y criterio de revisión conforme a los lineamientos aplicables.</div>
+                <div class="process-step"><span>2</span>Registrar URL oficial, fecha de consulta y resultado de la verificación.</div>
+                <div class="process-step"><span>3</span>Comunicar el hallazgo al responsable del PTE y documentar su respuesta.</div>
+                <div class="process-step"><span>4</span>Volver a verificar y conservar la ficha y el enlace como sustento.</div>
+            </div>
+        </div>
+        <div class="info-section info-note yellow"><strong>Competencias separadas:</strong> INTEGRID-LN puede orientar y facilitar el seguimiento; no publica ni modifica el PTE. Los responsables designados y los criterios de verificación deben confirmarse con los documentos institucionales y los lineamientos de transparencia.</div>
+        <div class="model-actions">
+            <a class="back-button" href="?" target="_self">← Volver al inicio</a>
+            <a class="source-button" href="?panel=evidencias" target="_self">Ver seguimiento simulado →</a>
+            <a class="source-button" href="{LINEAMIENTO_PTE}" target="_blank" rel="noopener noreferrer">Lineamiento PTE · R. D. N.° 066-2025 ↗</a>
+            <a class="source-button" href="{DIRECTIVA_MODELO}" target="_blank" rel="noopener noreferrer">Directiva: tareas 4.1 a 4.6 ↗</a>
+        </div>
+        """,
+    )
+elif modulo_actual == "marco":
+    pagina = pagina_modulo_info(
+        "📚",
+        "Base legal y ruta de implementación",
+        "Normas de implementación, evaluación y materias específicas que orientan esta demostración; sus obligaciones corresponden a la entidad, no al prototipo.",
+        f"""
+        <div class="info-section">
+            <h3>Marco principal</h3>
+            <div class="legal-cards">
+                <article class="legal-card"><strong>D. S. N.° 148-2024-PCM</strong><p>Aprueba el Modelo de Integridad, sus principios, componentes y criterios generales.</p><a href="{NORMA_MODELO}" target="_blank" rel="noopener noreferrer">Consultar norma ↗</a></article>
+                <article class="legal-card"><strong>Directiva N.° 001-2026-PCM/SIP</strong><p>Implementación del Modelo; aprobada por la Resolución de Secretaría N.° 002-2026-PCM/SIP. Desarrolla tres procesos, tareas, roles y anexos.</p><a href="{DIRECTIVA_MODELO}" target="_blank" rel="noopener noreferrer">Consultar directiva ↗</a></article>
+                <article class="legal-card"><strong>Directiva N.° 001-2025-PCM/SIP</strong><p>Evaluación de la implementación para determinar el ICP; aprobada por Resolución N.° 009-2025 y modificada por Resolución N.° 007-2026.</p><a href="{NORMA_EVALUACION}" target="_blank" rel="noopener noreferrer">Evaluación ↗</a> · <a href="{MODIFICACION_EVALUACION}" target="_blank" rel="noopener noreferrer">Modificación ↗</a></article>
+                <article class="legal-card"><strong>Guía de evaluación de Etapa 2 (V2)</strong><p>Instrumento de preguntas y medios de verificación para institucionalización, aprobado por Resolución N.° 004-2025-PCM/SIP; hay precisiones de la Resolución N.° 006-2026.</p><a href="https://www.gob.pe/institucion/pcm/normas-legales/6594541-004-2025-pcm-sip" target="_blank" rel="noopener noreferrer">Ver guía ↗</a> · <a href="https://www.gob.pe/institucion/pcm/normas-legales/8094545-006-2026-pcm-sip" target="_blank" rel="noopener noreferrer">Precisiones ↗</a></article>
+            </div>
+        </div>
+        <div class="info-section">
+            <h3>Normas por tema</h3>
+            <div class="legal-cards">
+                <article class="legal-card"><strong>Ética · Ley N.° 27815</strong><p>Principios, deberes y prohibiciones de la función pública.</p><a href="https://www.gob.pe/institucion/jne/normas-legales/8133444-ley-del-codigo-de-etica-de-la-funcion-publica-ley-n-27815" target="_blank" rel="noopener noreferrer">Consultar ley ↗</a></article>
+                <article class="legal-card"><strong>Declaración de intereses · Ley N.° 31227</strong><p>Competencias de la Contraloría para recibir y controlar declaraciones juradas de intereses de sujetos comprendidos.</p><a href="https://www.gob.pe/7368-presentar-declaracion-jurada-de-intereses-dji" target="_blank" rel="noopener noreferrer">Ruta oficial DJI ↗</a></article>
+                <article class="legal-card"><strong>Denuncias · D. Leg. N.° 1327</strong><p>Medidas de protección y tratamiento de denuncias por presunta corrupción.</p><a href="https://www.gob.pe/21129-denunciar-un-presunto-acto-de-corrupcion" target="_blank" rel="noopener noreferrer">Canal oficial ↗</a></article>
+                <article class="legal-card"><strong>RVL y agendas · Directiva N.° 003-2026-PCM/SIP</strong><p>Uso del RVL y del Registro de Agendas Oficiales; aprobada por Resolución N.° 008-2026-PCM/SIP.</p><a href="https://www.gob.pe/institucion/pcm/normas-legales/8417717-008-2026-pcm-sip" target="_blank" rel="noopener noreferrer">Consultar directiva ↗</a></article>
+                <article class="legal-card"><strong>Transparencia · Ley N.° 27806 y R. D. N.° 066-2025-JUS/DGTAIPD</strong><p>Acceso a la información pública y lineamiento específico para implementar y actualizar el PTE.</p><a href="{PTE_DIRIS}" target="_blank" rel="noopener noreferrer">PTE de DIRIS ↗</a> · <a href="{LINEAMIENTO_PTE}" target="_blank" rel="noopener noreferrer">Lineamiento ↗</a></article>
+                <article class="legal-card"><strong>Neutralidad electoral 2026 · PCM y JNE</strong><p>La R. SIP N.° 003-2026-PCM/SIP precisa el rol adicional de Oficial de Integridad Electoral; la R. N.° 000021-2026-P/JNE establece lineamientos para su designación y funciones.</p><a href="{NORMA_NEUTRALIDAD_PCM}" target="_blank" rel="noopener noreferrer">PCM ↗</a> · <a href="{LINEAMIENTOS_JNE}" target="_blank" rel="noopener noreferrer">JNE ↗</a></article>
+                <article class="legal-card"><strong>Evaluación ICP 2026 · Resolución N.° 009-2026-PCM/SIP</strong><p>Cronograma del proceso de evaluación; se consulta para coordinar las fechas aplicables, sin atribuir una etapa específica a DIRIS desde esta maqueta.</p><a href="https://www.gob.pe/institucion/pcm/normas-legales/8518085-009-2026-pcm-sip" target="_blank" rel="noopener noreferrer">Ver cronograma ↗</a></article>
+            </div>
+        </div>
+        <div class="info-section">
+            <h3>Documentos propios de DIRIS Lima Norte</h3>
+            <div class="legal-cards">
+                <article class="legal-card"><strong>Programa de Integridad 2026 · R. D. N.° D000352-2026</strong><p>Documento técnico aprobado para el año fiscal 2026. Su matriz vigente debe servir de entrada al seguimiento operativo.</p><a href="{PROGRAMA_DIRIS_2026}" target="_blank" rel="noopener noreferrer">Consultar programa ↗</a></article>
+                <article class="legal-card"><strong>Organización interna · R. D. N.° D000822-2025</strong><p>Actualiza la organización interna funcional; revisar conjuntamente las modificaciones posteriores, entre ellas la R. D. N.° D000218-2026, al identificar responsables.</p><a href="https://www.gob.pe/institucion/dirislimanorte/normas-legales/7172278-d000822-2025-dg-diris-ln" target="_blank" rel="noopener noreferrer">Organización ↗</a> · <a href="https://www.gob.pe/institucion/dirislimanorte/normas-legales/7781453-d000218-2026-dg-diris-ln" target="_blank" rel="noopener noreferrer">Modificación ↗</a></article>
+                <article class="legal-card"><strong>Integridad electoral · R. D. N.° D000173-2026</strong><p>Designa al Oficial de Integridad Institucional como Oficial de Integridad Electoral de DIRIS Lima Norte, en adición a sus funciones. Confirmar la persona que ejerce el cargo actualmente.</p><a href="{RESOLUCIONES_DIRIS}" target="_blank" rel="noopener noreferrer">Ver resoluciones DIRIS ↗</a></article>
+            </div>
+        </div>
+        <div class="info-section info-note blue"><strong>Uso institucional:</strong> relacionar cada tarea con el Programa de Integridad vigente de DIRIS, el área ejecutora, su evidencia oficial y la pregunta aplicable de la guía de evaluación. Esta página orienta la presentación y no asigna puntuaciones del ICP.</div>
+        <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio</a><a class="source-button" href="?modulo=modelo" target="_self">Explorar los nueve componentes →</a></div>
+        """,
+    )
+elif modulo_actual == "seguimiento":
+    pagina = pagina_modulo_info(
+        "📊",
+        "Seguimiento del Modelo de Integridad",
+        "Una ruta de trabajo desde el Programa de Integridad anual hasta informes verificables; por ahora todos los datos del panel son ficticios.",
+        """
+        <div class="info-section">
+            <h3>De actividad a medio de verificación</h3>
+            <div class="process-grid">
+                <div class="process-step"><span>1</span>Tomar una acción del Programa de Integridad aprobado y vincularla con su componente y periodo.</div>
+                <div class="process-step"><span>2</span>Identificar el área ejecutora, responsable, meta y criterio de revisión.</div>
+                <div class="process-step"><span>3</span>Registrar resultado, observación y documento o enlace de sustento, con fecha.</div>
+                <div class="process-step"><span>4</span>Consolidar, comunicar brechas y generar un informe para las autoridades competentes.</div>
+            </div>
+        </div>
+        <div class="info-section info-note green"><strong>Indicadores propuestos:</strong> tareas verificadas / tareas programadas; observaciones atendidas / observaciones comunicadas; acciones sustentadas / acciones ejecutadas. Para calcularlos se requieren fuentes institucionales y definiciones aprobadas.</div>
+        <div class="info-section info-note yellow"><strong>Panel actual:</strong> las tarjetas del inicio muestran cifras de maqueta y no guardan registros. La información real solo podría incorporarse con autenticación, roles, registro persistente y validación de las unidades competentes.</div>
+        <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio</a><a class="source-button" href="?panel=evidencias" target="_self">Ver reporte demostrativo →</a><a class="source-button" href="?modulo=marco" target="_self">Consultar normas →</a></div>
+        """,
+    )
 if modulo_actual in modulos:
     st.html(pagina)
     st.stop()
 
-if panel_vista_inicio in {"consultas", "orientaciones", "alertas", "derivaciones"}:
+if panel_vista_inicio in {"consultas", "orientaciones", "alertas", "derivaciones", "evidencias"}:
     st.html(pagina_panel_enfocado(panel_vista_inicio))
     st.stop()
 
@@ -1736,7 +1957,11 @@ columna_robot, columna_chat = st.columns([1, 2], gap="medium")
 
 with columna_robot:
     with st.container(border=True):
-        st.image(Path(__file__).parent / "assets" / "integri_robot.png", width="stretch")
+        ruta_robot = Path(__file__).parent / "assets" / "integri_robot.png"
+        if ruta_robot.exists():
+            st.image(ruta_robot, width="stretch")
+        else:
+            st.html('<div class="robot-fallback" aria-label="Mascota no disponible">🤖</div>')
         st.markdown("<div style='text-align:center;color:#0a2459;font-weight:800;'>INTEGRID-LN</div>", unsafe_allow_html=True)
         st.caption("Asistente virtual de orientación preventiva")
         st.html(

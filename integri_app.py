@@ -1,4 +1,4 @@
-# VERSION INTEGRID-LN: CABECERA_SIN_MENU_DUPLICADO - 16/09/2026
+# VERSION INTEGRID-LN: MENU_SIN_SEGUIMIENTO_DUPLICADO - 16/09/2026
 import base64
 import html
 from pathlib import Path
@@ -493,7 +493,7 @@ html, body, [class*="css"] {
 }
 .section-title:before, .section-title:after { content:""; flex:1; height:2px; background:#afc9ed; }
 
-.menu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.menu-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
 .menu-link { display:block; color:inherit; text-decoration:none; }
 .menu-card {
     min-height: 178px;
@@ -620,14 +620,9 @@ html, body, [class*="css"] {
 .metric-text { font:600 .83rem/1.15 Roboto,Arial,sans-serif; }
 .metric-link { color:var(--texto) !important; text-decoration:none !important; transition:transform .16s ease, box-shadow .16s ease; }
 .metric-link:hover { transform:translateY(-3px); border-color:#78a9dc; box-shadow:0 9px 17px rgba(18,56,116,.17); }
-.evidence-entry { display:block; margin:.95rem 0 .2rem; padding:.9rem 1.1rem; color:#0755a8 !important; background:#fff; border:1px solid #a6c6ee; border-radius:10px; text-decoration:none !important; font:800 .92rem/1.35 Roboto,Arial,sans-serif; }
-.evidence-entry:hover { background:#eef6ff; }
 .panel-detail { margin-top:1rem; padding:1rem; background:#fff; border:1px solid #c6daf3; border-radius:12px; box-shadow:0 4px 10px rgba(18,61,121,.08); }
 .panel-detail h3 { margin:0 0 .35rem; color:#092b66; font:800 1.15rem/1.2 Roboto,Arial,sans-serif; }
 .panel-detail > p { margin:.2rem 0 .8rem; color:#546c8d; font:500 .84rem/1.4 Roboto,Arial,sans-serif; }
-.demo-flow { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; }
-.demo-flow-step { position:relative; min-height:105px; padding:.8rem; color:#24476f; background:#edf5ff; border:1px solid #c2d9f2; border-radius:10px; font:600 .8rem/1.35 Roboto,Arial,sans-serif; }
-.demo-flow-step b { display:grid; place-items:center; width:27px; height:27px; margin-bottom:.45rem; color:#fff; background:#0755a8; border-radius:50%; }
 .focus-panel { max-width:1000px; margin:1.5rem auto; padding:1.35rem; }
 .focus-header {
     display:flex;
@@ -645,17 +640,6 @@ html, body, [class*="css"] {
 .focus-panel .panel-detail { margin-top:1rem; }
 .focus-actions { display:flex; justify-content:center; margin-top:1rem; }
 .focus-actions .back-button { margin-top:0; }
-
-.footer-nav {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:2rem;
-    padding: .65rem 8% 0;
-    border-top:2px solid #d2e0f4;
-    font:700 1rem/1.2 Roboto,Arial,sans-serif;
-}
-.footer-nav div, .footer-nav a { color:#0a2459; text-align:center; text-decoration:none; }
-.footer-nav a:hover { color:#0755a8; text-decoration:underline; }
 
 /* Panel administrativo demostrativo */
 .admin-page { padding:1.45rem; }
@@ -772,7 +756,6 @@ html, body, [class*="css"] {
 .legal-card strong { display:block; color:#092b66; font:800 1rem Roboto,Arial,sans-serif; }
 .legal-card p { color:#405a7d; font:500 .86rem/1.45 Roboto,Arial,sans-serif; }
 .legal-card a { color:#0755a8; font:800 .86rem Roboto,Arial,sans-serif; }
-.evidence-strip { margin:1rem 0; padding:.9rem 1rem; background:#edf5ff; border-left:5px solid #0755a8; border-radius:9px; color:#183b6d; font:600 .88rem/1.45 Roboto,Arial,sans-serif; }
 .stage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; }
 .stage-grid.five { grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); }
 .stage { padding:1rem; text-align:center; background:#eaf4ff; border:1px solid #bcd6f1; border-radius:12px; }
@@ -1011,7 +994,6 @@ div.stButton > button {
     .menu-icon { font-size:2.9rem; }
     .metrics-grid { grid-template-columns:repeat(2,1fr); }
     .admin-kpis { grid-template-columns:repeat(2,1fr); }
-    .demo-flow { grid-template-columns:repeat(2,1fr); }
     .source-grid { grid-template-columns:1fr; }
     .admin-header { align-items:flex-start; }
     .focus-header { align-items:flex-start; }
@@ -1046,10 +1028,8 @@ div.stButton > button {
     .menu-card { min-height:128px; padding:.75rem .3rem; }
     .menu-card strong { font-size:.92rem; }
     .metric { min-height:155px; }
-    .footer-nav { grid-template-columns:1fr; padding:.6rem 0 0; gap:.8rem; }
     .admin-kpis { grid-template-columns:1fr 1fr; }
     .topic-row { grid-template-columns:110px 1fr 35px; }
-    .demo-flow { grid-template-columns:1fr; }
     .focus-header { flex-direction:column; }
     .situation-grid, .decision-route { grid-template-columns:1fr; }
     .info-grid.cols-2, .info-grid.cols-3, .info-grid.cols-4, .process-grid, .contact-box { grid-template-columns:1fr; }
@@ -1121,36 +1101,7 @@ def detalle_panel_demostrativo(vista: str) -> str:
             </table></div>
         </div>
         """
-    if vista == "evidencias":
-        return """
-        <div class="panel-detail">
-            <h3>📎 Tareas y medios de verificación del Modelo</h3>
-            <p>Ejemplo de seguimiento transversal: cada fila indica qué se revisó, qué área debe sustentar la tarea y cuál sería la fuente comprobable.</p>
-            <div class="admin-table-wrap"><table class="admin-table">
-                <thead><tr><th>Componente / tarea</th><th>Periodo</th><th>Responsable de la tarea</th><th>Medio de verificación esperado</th><th>Estado demo</th></tr></thead>
-                <tbody>
-                    <tr><td>1 · Programa anual</td><td>2026</td><td>Alta Dirección / UFII</td><td>Resolución y matriz aprobada</td><td><span class="status-pill ok">Verificada</span></td></tr>
-                    <tr><td>4 · Tarea 4.1 PTE</td><td>Julio</td><td>Responsable del PTE / UFII</td><td>URL, ficha fechada y respuesta a observaciones</td><td><span class="status-pill wait">En revisión</span></td></tr>
-                    <tr><td>4 · Tareas 4.3 y 4.4</td><td>Julio</td><td>Responsables RVL y agendas</td><td>Reporte oficial, fecha y verificación</td><td><span class="status-pill sent">Coordinación</span></td></tr>
-                    <tr><td>6 · Capacitación</td><td>Agosto</td><td>UFII / áreas de apoyo</td><td>Programa, asistencia y material aprobado</td><td><span class="status-pill ok">Verificada</span></td></tr>
-                    <tr><td>8 · Seguimiento</td><td>Trimestre</td><td>UFII / áreas involucradas</td><td>Matriz e informe periódico dirigido a autoridades</td><td><span class="status-pill wait">Pendiente</span></td></tr>
-                </tbody>
-            </table></div>
-            <div class="evidence-strip">Indicadores posibles, una vez conectados a registros validados: tareas verificadas / tareas programadas; hallazgos subsanados / hallazgos comunicados; actividades sustentadas / actividades ejecutadas. Ningún indicador se calcula hoy con datos reales.</div>
-        </div>
-        """
-    return """
-    <div class="panel-detail">
-        <h3>🔄 Así funcionaría el seguimiento</h3>
-        <p>Los registros se actualizarían desde el chat, formularios y controles internos autorizados.</p>
-        <div class="demo-flow">
-            <div class="demo-flow-step"><b>1</b>INTEGRID-LN asigna un código y registra fecha, canal y tema.</div>
-            <div class="demo-flow-step"><b>2</b>La consulta se clasifica como orientación, alerta o posible derivación.</div>
-            <div class="demo-flow-step"><b>3</b>La UFII actualiza el estado cuando corresponde una atención especializada.</div>
-            <div class="demo-flow-step"><b>4</b>El panel consolida cifras, temas y estados sin exhibir datos personales.</div>
-        </div>
-    </div>
-    """
+    return ""
 
 
 def pagina_panel_enfocado(vista: str) -> str:
@@ -1160,7 +1111,6 @@ def pagina_panel_enfocado(vista: str) -> str:
         "orientaciones": "Orientaciones brindadas",
         "alertas": "Alertas preventivas",
         "derivaciones": "Derivaciones a la UFII",
-        "evidencias": "Tareas y evidencias del Modelo",
     }
     titulo = titulos.get(vista, "Panel de seguimiento")
     detalle = detalle_panel_demostrativo(vista)
@@ -1229,14 +1179,13 @@ pagina = f"""
             <a class="menu-link" href="?modulo=derivacion" target="_self"><div class="menu-card"><span class="menu-icon">💼</span><strong>Derivar a UFII</strong></div></a>
             <a class="menu-link" href="?modulo=transparencia" target="_self"><div class="menu-card"><span class="menu-icon">🔎</span><strong>Transparencia y PTE</strong></div></a>
             <a class="menu-link" href="?modulo=marco" target="_self"><div class="menu-card"><span class="menu-icon">📚</span><strong>Base legal y procesos</strong></div></a>
-            <a class="menu-link" href="?modulo=seguimiento" target="_self"><div class="menu-card"><span class="menu-icon">📊</span><strong>Seguimiento del Modelo</strong></div></a>
         </div>
         <a class="election-link" href="?modulo=neutralidad" target="_self"><span class="election-icon">🗳️</span><span><strong>Neutralidad electoral 2026</strong><small>Guía preventiva · Elecciones regionales y municipales del 4 de octubre</small></span><span class="election-arrow">›</span></a>
     </section>
 
     <section id="panel-seguimiento" class="section panel">
-        <h2 class="section-title">Panel de seguimiento · demostración UFII</h2>
-        <p class="demo-caption">Selecciona una tarjeta para visualizar cómo se presentarían los registros y el proceso de seguimiento. Esta maqueta es pública y contiene únicamente ejemplos ficticios.</p>
+        <h2 class="section-title">Panel UFII · demostración</h2>
+        <p class="demo-caption">Datos ficticios para mostrar los reportes del panel.</p>
         <div class="metrics-grid">
             <a class="metric metric-link" href="?panel=consultas#panel-seguimiento" target="_self">
                 <span class="metric-icon">💬</span><div class="metric-title">Consultas recibidas</div><div class="metric-rule"></div>
@@ -1255,15 +1204,9 @@ pagina = f"""
                 <div class="metric-value">6 <small>solicitudes derivadas</small></div>
             </a>
         </div>
-        <a class="evidence-entry" href="?panel=evidencias" target="_self">📎 Ver cómo se seguirían las tareas, responsables, indicadores y medios de verificación del Modelo →</a>
         {detalle_panel_inicio}
-        <p class="demo-disclaimer"><strong>Datos simulados para la maqueta:</strong> todas las cifras, códigos y situaciones son ficticias. Se muestran únicamente para demostrar cómo funcionaría el seguimiento; no representan carga laboral ni resultados oficiales de la UFII.</p>
+        <p class="demo-disclaimer"><strong>Datos simulados:</strong> las cifras y registros son ficticios; no representan carga laboral ni resultados oficiales de la UFII.</p>
     </section>
-
-    <footer class="footer-nav">
-        <a href="?modulo=guias" target="_self">💬 &nbsp; Guías preventivas</a>
-        <a href="?modulo=seguimiento" target="_self">🔎 &nbsp; Seguimiento del Modelo (demo)</a>
-    </footer>
 </main>
 """
 
@@ -1369,7 +1312,6 @@ modulos = {
     "derivacion": ("💼", "Derivar a UFII", "Espacio para identificar cuándo corresponde solicitar orientación directa a la UFII."),
     "transparencia": ("🔎", "Transparencia y PTE", "Consulta el Portal de Transparencia Estándar de DIRIS y la ruta de verificación del componente 4."),
     "marco": ("📚", "Base legal y procesos", "Consulta las normas vigentes y cómo se enlazan con la demostración del Modelo."),
-    "seguimiento": ("📊", "Seguimiento del Modelo", "Visualiza la ruta de acciones, responsables, indicadores y medios de verificación."),
     "neutralidad": ("🗳️", "Neutralidad electoral 2026", "Orientación preventiva sobre reglas de neutralidad y publicidad estatal durante el proceso electoral."),
     "componente": ("🛡️", "Componente del Modelo", "Revisa sus acciones y ejemplos de evidencia."),
 }
@@ -1727,7 +1669,6 @@ elif modulo_actual == "guias":
                 <a class="guide-link" href="?modulo=derivacion" target="_self"><span>💼</span><strong>Antes de derivar a la UFII</strong><small>Define el tema, la orientación requerida y el canal correcto sin exponer datos sensibles.</small></a>
                 <a class="guide-link" href="?modulo=modelo" target="_self"><span>🛡️</span><strong>Modelo de Integridad</strong><small>Consulta nueve componentes, tres procesos de implementación y cinco etapas de evaluación.</small></a>
                 <a class="guide-link" href="?modulo=transparencia" target="_self"><span>🔎</span><strong>Antes de revisar el PTE</strong><small>Selecciona rubro y periodo, conserva enlace y fecha, coordina observaciones con el responsable.</small></a>
-                <a class="guide-link" href="?modulo=seguimiento" target="_self"><span>📊</span><strong>Antes de reportar una acción</strong><small>Vincula componente, Programa anual, responsable, fecha y medio de verificación.</small></a>
             </div>
         </div>
 
@@ -1857,7 +1798,6 @@ elif modulo_actual == "transparencia":
         <div class="info-section info-note yellow"><strong>Competencias separadas:</strong> INTEGRID-LN puede orientar y facilitar el seguimiento; no publica ni modifica el PTE. Los responsables designados y los criterios de verificación deben confirmarse con los documentos institucionales y los lineamientos de transparencia.</div>
         <div class="model-actions">
             <a class="back-button" href="?" target="_self">← Volver al inicio</a>
-            <a class="source-button" href="?panel=evidencias" target="_self">Ver seguimiento simulado →</a>
             <a class="source-button" href="{LINEAMIENTO_PTE}" target="_blank" rel="noopener noreferrer">Lineamiento PTE · R. D. N.° 066-2025 ↗</a>
             <a class="source-button" href="{DIRECTIVA_MODELO}" target="_blank" rel="noopener noreferrer">Directiva: tareas 4.1 a 4.6 ↗</a>
         </div>
@@ -1902,31 +1842,11 @@ elif modulo_actual == "marco":
         <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio</a><a class="source-button" href="?modulo=modelo" target="_self">Explorar los nueve componentes →</a></div>
         """,
     )
-elif modulo_actual == "seguimiento":
-    pagina = pagina_modulo_info(
-        "📊",
-        "Seguimiento del Modelo de Integridad",
-        "Una ruta de trabajo desde el Programa de Integridad anual hasta informes verificables; por ahora todos los datos del panel son ficticios.",
-        """
-        <div class="info-section">
-            <h3>De actividad a medio de verificación</h3>
-            <div class="process-grid">
-                <div class="process-step"><span>1</span>Tomar una acción del Programa de Integridad aprobado y vincularla con su componente y periodo.</div>
-                <div class="process-step"><span>2</span>Identificar el área ejecutora, responsable, meta y criterio de revisión.</div>
-                <div class="process-step"><span>3</span>Registrar resultado, observación y documento o enlace de sustento, con fecha.</div>
-                <div class="process-step"><span>4</span>Consolidar, comunicar brechas y generar un informe para las autoridades competentes.</div>
-            </div>
-        </div>
-        <div class="info-section info-note green"><strong>Indicadores propuestos:</strong> tareas verificadas / tareas programadas; observaciones atendidas / observaciones comunicadas; acciones sustentadas / acciones ejecutadas. Para calcularlos se requieren fuentes institucionales y definiciones aprobadas.</div>
-        <div class="info-section info-note yellow"><strong>Panel actual:</strong> las tarjetas del inicio muestran cifras de maqueta y no guardan registros. La información real solo podría incorporarse con autenticación, roles, registro persistente y validación de las unidades competentes.</div>
-        <div class="model-actions"><a class="back-button" href="?" target="_self">← Volver al inicio</a><a class="source-button" href="?panel=evidencias" target="_self">Ver reporte demostrativo →</a><a class="source-button" href="?modulo=marco" target="_self">Consultar normas →</a></div>
-        """,
-    )
 if modulo_actual in modulos:
     st.html(pagina)
     st.stop()
 
-if panel_vista_inicio in {"consultas", "orientaciones", "alertas", "derivaciones", "evidencias"}:
+if panel_vista_inicio in {"consultas", "orientaciones", "alertas", "derivaciones"}:
     st.html(pagina_panel_enfocado(panel_vista_inicio))
     st.stop()
 
